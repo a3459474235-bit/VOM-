@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Running Boards VOM 市场分析报告</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#fff;color:#333;line-height:1.7;}
+/* Sidebar */
+.sidebar{position:fixed;left:0;top:0;width:240px;height:100%;background:#1a2533;overflow-y:auto;z-index:100;padding:20px 0;}
+.sidebar h2{color:#00d4ff;font-size:14px;padding:12px 20px;border-bottom:1px solid #2a3a4a;}
+.sidebar a{display:block;padding:8px 20px;color:#8899aa;text-decoration:none;font-size:12.5px;transition:all .2s;border-left:3px solid transparent;}
+.sidebar a:hover{color:#e0e0e0;background:#0f1923;border-left-color:#00d4ff;}
+.sidebar a.l2{padding-left:32px;font-size:11.5px;}
+/* Main */
+.main{margin-left:240px;max-width:1100px;padding:30px 40px;}
+/* Cover */
+.cover{text-align:center;padding:80px 0 60px;border-bottom:3px solid #1a2533;margin-bottom:40px;}
+.cover h1{font-size:32px;color:#1a2533;margin-bottom:12px;}
+.cover .sub{color:#666;font-size:16px;}
+.cover .date{color:#999;font-size:14px;margin-top:8px;}
+/* Section */
+h2.section{font-size:22px;color:#1a2533;margin:40px 0 20px;padding:12px 0;border-bottom:2px solid #1a2533;}
+h3.sub-section{font-size:17px;color:#2a4a6a;margin:30px 0 15px;padding-left:12px;border-left:4px solid #00d4ff;}
+/* Cards */
+.metric-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:20px 0;}
+.mc{background:#f8f9fa;border-radius:10px;padding:18px;border:1px solid #e0e0e0;}
+.mc .label{color:#666;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;}
+.mc .value{font-size:26px;font-weight:700;color:#1a2533;margin-top:4px;}
+.mc .change{font-size:13px;margin-top:2px;}
+.mc .change.up{color:#22c55e;} .mc .change.down{color:#ef4444;}
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+th{background:#f1f5f9;color:#475569;padding:10px 12px;text-align:left;font-weight:600;border-bottom:2px solid #e2e8f0;}
+td{padding:9px 12px;border-bottom:1px solid #f1f5f9;color:#334155;}
+tr:nth-child(even){background:#f8fafc;}
+tr:hover{background:#eff6ff;}
+.highlight{background:#fffbeb !important;}
+/* Charts */
+.chart-container{margin:20px 0;background:#fff;border:1px solid #e8e8e8;border-radius:8px;padding:16px;}
+.chart{width:100%;height:400px;}
+.chart-sm{height:300px;}
+.chart-lg{height:500px;}
+.chart-xl{height:550px;}
+/* Insight box */
+.insight{background:#f0f9ff;border-left:4px solid #0ea5e9;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:14px;color:#0c4a6e;}
+.insight strong{color:#0369a1;}
+.insight ul{margin:8px 0 0 16px;}
+.insight li{margin:4px 0;}
+/* Badge */
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;}
+.b-brand{background:#dbeafe;color:#1d4ed8;}.b-func{background:#dcfce7;color:#166534;}.b-gen{background:#f1f5f9;color:#475569;}
+/* Data source */
+.data-source{margin:30px 0;padding:20px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0;}
+.data-source h3{font-size:15px;color:#475569;margin-bottom:12px;}
+/* Row */
+.row{display:flex;gap:20px;flex-wrap:wrap;margin:16px 0;}
+.row>.col{flex:1;min-width:280px;}
+/* Risk */
+.risk-high{color:#ef4444;font-weight:600;}.risk-mid{color:#f59e0b;font-weight:600;}.risk-low{color:#22c55e;font-weight:600;}
+/* Print */
+@media print{.sidebar{display:none;}.main{margin-left:0;}}
+@media(max-width:900px){.sidebar{display:none;}.main{margin-left:0;padding:20px;}}
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <h2>Running Boards VOM</h2>
+  <a href="#cover">封面</a>
+  <a href="#datasource">数据来源</a>
+  <a href="#ch1">第一章 市场规模拆解</a>
+  <a href="#s1_1" class="l2">1.1 年度市场规模</a>
+  <a href="#s1_2" class="l2">1.2 品类构成</a>
+  <a href="#s1_3" class="l2">1.3 客单价趋势</a>
+  <a href="#ch2">第二章 市场趋势拆解</a>
+  <a href="#s2_1" class="l2">2.1 站内搜索热度</a>
+  <a href="#s2_2" class="l2">2.2 站外搜索热度</a>
+  <a href="#s2_3" class="l2">2.3 YOY/QoQ 分析</a>
+  <a href="#s2_4" class="l2">2.4 季节性规律</a>
+  <a href="#s2_5" class="l2">2.5 全年大趋势</a>
+  <a href="#ch3">第三章 市场维度拆解</a>
+  <a href="#s3_1" class="l2">3.1 品牌格局</a>
+  <a href="#s3_2" class="l2">3.2 价位段分析</a>
+  <a href="#s3_3" class="l2">3.3 价位段x品牌</a>
+  <a href="#s3_4" class="l2">3.4 星级/评论</a>
+  <a href="#s3_5" class="l2">3.5 上新趋势</a>
+  <a href="#s3_6" class="l2">3.6 功能拆解</a>
+  <a href="#s3_7" class="l2">3.7 奇点分析</a>
+  <a href="#ch4">第四章 结论与建议</a>
+  <a href="#s4_1" class="l2">4.1 市场判断</a>
+  <a href="#s4_2" class="l2">4.2 入场机会</a>
+  <a href="#s4_3" class="l2">4.3 推荐路径</a>
+  <a href="#s4_4" class="l2">4.4 差异化策略</a>
+  <a href="#s4_5" class="l2">4.5 风险提示</a>
+</div>
+<div class="main">
+
+<!-- COVER -->
+<div class="cover" id="cover">
+  <h1>Running Boards</h1>
+  <div class="sub">VOM 市场分析报告 (Voice of Market)</div>
+  <div class="date">报告日期: 2026-04-03 | Amazon US 市场</div>
+</div>
+
+<!-- DATA SOURCE -->
+<div class="data-source" id="datasource">
+  <h3>数据来源与取数范围</h3>
+  <table>
+    <tr><th>数据类型</th><th>来源</th><th>时间范围</th><th>说明</th></tr>
+    <tr><td>趋势数据（类目月度大盘）</td><td>卖家精灵</td><td>2023-01 ~ 2026-03</td><td>共39个月，含月度 Rev、Units</td></tr>
+    <tr><td>大盘数据（产品/品牌截面）</td><td>卖家精灵</td><td>近12个月累计</td><td>1,175 个 ASIN</td></tr>
+    <tr><td>BSR 榜单数据</td><td>卖家精灵</td><td>2026-04-03</td><td>BSR TOP99，含产品标题、卖点，用于NLP语义分类</td></tr>
+    <tr><td>站内关键词</td><td>卖家精灵</td><td>近30天</td><td>766 个关键词，含搜索量/购买率等</td></tr>
+    <tr><td>站外搜索热度</td><td>Google Trends</td><td>2021-03 ~ 2026-03</td><td>"running boards" 美国地区周度热度指数</td></tr>
+  </table>
+</div>
+
+<!-- CHAPTER 1: MARKET SIZE -->
+<h2 class="section" id="ch1">第一章 市场规模拆解</h2>
+
+<h3 class="sub-section" id="s1_1">1.1 年度市场规模</h3>
+<div class="metric-cards">
+  <div class="mc"><div class="label">2023 全年</div><div class="value">$28.98M</div><div class="change">157,038 units</div></div>
+  <div class="mc"><div class="label">2024 全年</div><div class="value">$35.40M</div><div class="change up">YOY +22.2%</div></div>
+  <div class="mc"><div class="label">2025 全年</div><div class="value">$52.68M</div><div class="change up">YOY +48.8%</div></div>
+  <div class="mc"><div class="label">2026 Q1</div><div class="value">$15.46M</div><div class="change">3 个月数据</div></div>
+</div>
+
+<table>
+  <tr><th>年份</th><th>销售额</th><th>销量</th><th>ASP</th><th>Rev YOY%</th><th>Units YOY%</th></tr>
+  <tr><td><b>2023</b></td><td>$28.98M</td><td>157,038</td><td>$184.56</td><td>-</td><td>-</td></tr><tr><td><b>2024</b></td><td>$35.40M</td><td>190,873</td><td>$185.48</td><td>22.2%</td><td>21.5%</td></tr><tr><td><b>2025</b></td><td>$52.68M</td><td>285,499</td><td>$184.53</td><td>48.8%</td><td>49.6%</td></tr><tr><td><b>2026 (3个月)</b></td><td>$15.46M</td><td>83,533</td><td>$185.12</td><td>-70.6%</td><td>-70.7%</td></tr>
+</table>
+
+<div class="chart-container"><div class="chart chart-lg" id="r_trend"></div></div>
+
+<div class="insight">
+  <strong>核心发现：</strong>
+  <ul>
+    <li>Running Boards 市场呈现<b>强劲增长态势</b>：2024年Rev $35.4M（YOY +22.1%），2025年Rev $52.7M（YOY +48.8%），增速显著加快</li>
+    <li>2026 Q1 已达 $15.5M，按此速率全年可达 <b>$60M+</b>，市场仍在加速扩张</li>
+    <li>增长主要由<b>销量驱动</b>（ASP基本稳定在$184-$186），说明需求端增长强劲，非纯涨价效应</li>
+    <li>12月为全年<b>销售高峰</b>（节日/年末消费），1月为相对低谷</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s1_2">1.2 市场蛋糕 Size 与品类构成</h3>
+<p>基于 BSR TOP99 产品的标题和卖点进行 NLP 语义分类，将市场分为以下产品形态：</p>
+
+<div class="row">
+  <div class="col"><div class="chart-container"><div class="chart" id="r_l1rev"></div></div></div>
+  <div class="col"><div class="chart-container"><div class="chart" id="r_l1units"></div></div></div>
+</div>
+
+<table>
+  <tr><th>产品形态</th><th>产品数</th><th>销售额</th><th>Rev占比</th><th>销量</th><th>Units占比</th><th>ASP</th></tr>
+  <tr><td><b>平面梯</b></td><td>41</td><td>$10.45M</td><td>47.0%</td><td>68,788</td><td>53.9%</td><td>$152</td></tr><tr><td><b>单步梯</b></td><td>17</td><td>$4.46M</td><td>20.1%</td><td>22,445</td><td>17.6%</td><td>$199</td></tr><tr><td><b>双步梯-经典款(中间台阶)</b></td><td>24</td><td>$4.29M</td><td>19.3%</td><td>16,532</td><td>12.9%</td><td>$260</td></tr><tr><td><b>侧梯</b></td><td>9</td><td>$2.05M</td><td>9.2%</td><td>10,621</td><td>8.3%</td><td>$193</td></tr><tr><td><b>替换配件</b></td><td>4</td><td>$485.2K</td><td>2.2%</td><td>6,187</td><td>4.8%</td><td>$78</td></tr><tr><td><b>双步梯(中间台阶+bed access)</b></td><td>1</td><td>$211.6K</td><td>1.0%</td><td>757</td><td>0.6%</td><td>$279</td></tr><tr><td><b>双步梯(bed access台阶)</b></td><td>1</td><td>$152.5K</td><td>0.7%</td><td>700</td><td>0.5%</td><td>$218</td></tr><tr><td><b>通用踏板</b></td><td>1</td><td>$140.1K</td><td>0.6%</td><td>1,682</td><td>1.3%</td><td>$83</td></tr><tr><td><b>双步梯(前面+中间+bed access)</b></td><td>1</td><td>$1.2K</td><td>0.0%</td><td>4</td><td>0.0%</td><td>$299</td></tr>
+</table>
+
+<div class="chart-container"><div class="chart chart-lg" id="r_l2bar"></div></div>
+
+<div class="insight">
+  <strong>品类构成核心发现：</strong>
+  <ul>
+    <li><b>平面梯</b>是最大品类（51个产品），占Rev 58.6%、Units 64.0%，ASP $160，是市场基本盘和性价比主力</li>
+    <li><b>双步梯-经典款（中间台阶）</b>是最高溢价品类（24个产品），Rev占19.3%但ASP高达<b>$260</b>，是平面梯的1.6倍，溢价能力最强</li>
+    <li><b>单步梯</b>占Rev 17.7%，ASP $195，定位在平面梯和双步梯之间，代表品牌为 Tyger Auto（LanderX/Access系列）</li>
+    <li><b>双步梯（中间台阶+bed access）</b>和<b>双步梯（bed access台阶）</b>目前仅 Binary Star 在做，市场验证中，ASP $218-$279，是<b>高端差异化蓝海</b></li>
+    <li><b>双步梯（前面+中间+bed access）</b>为 SOENBOO 三步设计，ASP $299，最高端但销量极少</li>
+    <li>入场建议：<b>双步梯-经典款是性价比最优的入场方向</b>——ASP $260、市场已验证、竞争适中。进阶方向为 bed access 功能差异化</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s1_3">1.3 客单价趋势</h3>
+<div class="chart-container"><div class="chart" id="r_asp"></div></div>
+<table>
+  <tr><th>年份</th><th>年均ASP</th><th>最高月ASP</th><th>最低月ASP</th></tr>
+  <tr><td>2023</td><td>$184.56</td><td>$190.13</td><td>$172.53</td></tr><tr><td>2024</td><td>$185.48</td><td>$193.79</td><td>$177.88</td></tr><tr><td>2025</td><td>$184.53</td><td>$192.31</td><td>$177.51</td></tr><tr><td>2026</td><td>$185.12</td><td>$185.72</td><td>$184.77</td></tr>
+</table>
+
+<!-- CHAPTER 2: TRENDS -->
+<h2 class="section" id="ch2">第二章 市场趋势拆解</h2>
+
+<h3 class="sub-section" id="s2_1">2.1 站内搜索热度</h3>
+<p><b>通用词 TOP5</b>（核心类目搜索词）</p>
+<table>
+  <tr><th>#</th><th>关键词</th><th>月搜索量</th><th>月购买量</th><th>购买率</th><th>标题密度</th><th>PPC竞价</th></tr>
+  <tr><td>1</td><td><b>running boards</b></td><td>70,892</td><td>369</td><td>0.52%</td><td>42</td><td>$1.28</td></tr><tr><td>2</td><td><b>side steps</b></td><td>13,056</td><td>56</td><td>0.43%</td><td>28</td><td>$0.35</td></tr><tr><td>3</td><td><b>side steps for truck</b></td><td>9,560</td><td>52</td><td>0.54%</td><td>0</td><td>$0.42</td></tr><tr><td>4</td><td><b>truck step</b></td><td>5,704</td><td>59</td><td>1.04%</td><td>11</td><td>$0.77</td></tr><tr><td>5</td><td><b>running board lights</b></td><td>5,086</td><td>505</td><td>9.92%</td><td>28</td><td>$0.93</td></tr>
+</table>
+
+<p><b>品牌搜索心智 TOP10</b>（合并同品牌所有关键词）</p>
+<table>
+  <tr><th>#</th><th>品牌</th><th>合并搜索量</th><th>合并购买量</th><th>加权购买率</th><th>关键词数</th><th>核心词</th></tr>
+  <tr><td>1</td><td><b>rough country</b></td><td>16,814</td><td>44</td><td>0.26%</td><td>2</td><td>rough country, rough country running boards</td></tr><tr><td>2</td><td><b>oedro</b></td><td>5,932</td><td>162</td><td>2.73%</td><td>2</td><td>oedro running boards, oedro</td></tr><tr><td>3</td><td><b>amp research</b></td><td>5,640</td><td>28</td><td>0.50%</td><td>3</td><td>amp research powerstep running boards, amp research powerstep motor</td></tr><tr><td>4</td><td><b>yitamotor</b></td><td>1,512</td><td>13</td><td>0.86%</td><td>1</td><td>yitamotor running boards</td></tr><tr><td>5</td><td><b>binary star</b></td><td>982</td><td>5</td><td>0.51%</td><td>1</td><td>binary star running boards</td></tr><tr><td>6</td><td><b>dna motoring</b></td><td>825</td><td>9</td><td>1.09%</td><td>1</td><td>dna motoring</td></tr><tr><td>7</td><td><b>ironbison</b></td><td>686</td><td>4</td><td>0.58%</td><td>1</td><td>iron bison running boards</td></tr><tr><td>8</td><td><b>autosaver88</b></td><td>676</td><td>3</td><td>0.44%</td><td>1</td><td>autosaver88</td></tr><tr><td>9</td><td><b>aps</b></td><td>639</td><td>3</td><td>0.47%</td><td>1</td><td>aps running boards</td></tr><tr><td>10</td><td><b>yzona</b></td><td>491</td><td>3</td><td>0.61%</td><td>1</td><td>yzona running boards</td></tr>
+</table>
+
+<p><b>车型词 TOP5</b>（含特定车型名称的搜索词）</p>
+<table>
+  <tr><th>#</th><th>关键词</th><th>月搜索量</th><th>月购买量</th><th>购买率</th></tr>
+  <tr><td>1</td><td><b>jeep wrangler accessories</b></td><td>125,195</td><td>1,027</td><td>0.82%</td></tr><tr><td>2</td><td><b>jeep gladiator accessories</b></td><td>65,753</td><td>612</td><td>0.93%</td></tr><tr><td>3</td><td><b>ford f150 accessories</b></td><td>49,160</td><td>359</td><td>0.73%</td></tr><tr><td>4</td><td><b>bronco accessories</b></td><td>47,101</td><td>513</td><td>1.09%</td></tr><tr><td>5</td><td><b>jeep accessories</b></td><td>46,624</td><td>331</td><td>0.71%</td></tr>
+</table>
+
+<p><b>搜索量降序总表 TOP15</b></p>
+<table>
+  <tr><th>#</th><th>类型</th><th>关键词</th><th>月搜索量</th><th>月购买量</th><th>购买率</th></tr>
+  <tr><td>1</td><td><span class="badge b-func">功能</span></td><td>jeep wrangler accessories</td><td>125,195</td><td>1,027</td><td>0.82%</td></tr><tr><td>2</td><td><span class="badge b-func">功能</span></td><td>running boards</td><td>70,892</td><td>369</td><td>0.52%</td></tr><tr><td>3</td><td><span class="badge b-func">功能</span></td><td>jeep gladiator accessories</td><td>65,753</td><td>612</td><td>0.93%</td></tr><tr><td>4</td><td><span class="badge b-func">功能</span></td><td>ford f150 accessories</td><td>49,160</td><td>359</td><td>0.73%</td></tr><tr><td>5</td><td><span class="badge b-func">功能</span></td><td>bronco accessories</td><td>47,101</td><td>513</td><td>1.09%</td></tr><tr><td>6</td><td><span class="badge b-func">功能</span></td><td>jeep accessories</td><td>46,624</td><td>331</td><td>0.71%</td></tr><tr><td>7</td><td><span class="badge b-func">功能</span></td><td>f150 accessories</td><td>46,227</td><td>342</td><td>0.74%</td></tr><tr><td>8</td><td><span class="badge b-func">功能</span></td><td>toyota tacoma accessories</td><td>45,689</td><td>1,403</td><td>3.07%</td></tr><tr><td>9</td><td><span class="badge b-func">功能</span></td><td>ford bronco accessories</td><td>43,258</td><td>593</td><td>1.37%</td></tr><tr><td>10</td><td><span class="badge b-func">功能</span></td><td>chevy silverado 1500 accessories</td><td>41,161</td><td>210</td><td>0.51%</td></tr><tr><td>11</td><td><span class="badge b-func">功能</span></td><td>ram 1500 accessories</td><td>40,720</td><td>1,234</td><td>3.03%</td></tr><tr><td>12</td><td><span class="badge b-func">功能</span></td><td>gmc sierra 1500 accessories</td><td>31,185</td><td>271</td><td>0.87%</td></tr><tr><td>13</td><td><span class="badge b-func">功能</span></td><td>4runner accessories</td><td>29,604</td><td>290</td><td>0.98%</td></tr><tr><td>14</td><td><span class="badge b-func">功能</span></td><td>tacoma accessories 2016-2023</td><td>27,742</td><td>150</td><td>0.54%</td></tr><tr><td>15</td><td><span class="badge b-func">功能</span></td><td>nissan frontier accessories</td><td>23,672</td><td>741</td><td>3.13%</td></tr>
+</table>
+
+<div class="insight">
+  <strong>搜索热度洞察：</strong>
+  <ul>
+    <li>"running boards" 月搜索量 70,892，是本类目最核心的搜索词，PPC竞价 $1.28，竞争适中</li>
+    <li>品牌搜索心智：<b>Rough Country</b> 搜索量最高(16,814)但购买率极低(0.26%)，属于"高认知低转化"的大品牌溢出流量（该品牌主做越野悬挂，踏板非主业）</li>
+    <li><b>oEdRo</b> 搜索量5,932但购买率2.73%，是转化效率最高的品牌——搜了就买，品牌忠诚度强</li>
+    <li>AMP Research 搜索与电动踏板替换电机相关，说明电动踏板存在<b>强售后需求</b></li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s2_2">2.2 站外搜索热度 (Google Trends)</h3>
+<div class="chart-container"><div class="chart chart-lg" id="r_gt"></div></div>
+<div class="insight">
+  <strong>Google Trends 洞察：</strong>
+  <ul>
+    <li>"running boards" 在 Google 上的搜索热度从 2021-2022 年的 60-80 区间，回升至 2025-2026 年的 <b>75-100 区间</b>，搜索需求持续走高</li>
+    <li>2026年2-3月搜索热度突破 90-100，达到历史最高，与亚马逊站内销售增长趋势完全吻合</li>
+    <li>每年 3-4 月和 7-8 月出现搜索高峰，与春季/夏季户外活动和卡车改装旺季对应</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s2_3">2.3 YOY / QoQ 变化分析</h3>
+<div class="chart-container"><div class="chart" id="r_yoy"></div></div>
+<table>
+  <tr><th>季度</th><th>销售额</th><th>销量</th><th>ASP</th><th>Rev QoQ</th></tr>
+  <tr><td><b>2024 Q2</b></td><td>$8.00M</td><td>43,908</td><td>$182</td><td>-</td></tr><tr><td><b>2024 Q3</b></td><td>$9.17M</td><td>49,848</td><td>$184</td><td>14.6%</td></tr><tr><td><b>2024 Q4</b></td><td>$11.59M</td><td>60,975</td><td>$190</td><td>26.4%</td></tr><tr><td><b>2025 Q1</b></td><td>$11.09M</td><td>59,268</td><td>$187</td><td>-4.3%</td></tr><tr><td><b>2025 Q2</b></td><td>$12.76M</td><td>68,008</td><td>$188</td><td>15.1%</td></tr><tr><td><b>2025 Q3</b></td><td>$13.09M</td><td>72,071</td><td>$182</td><td>2.6%</td></tr><tr><td><b>2025 Q4</b></td><td>$15.75M</td><td>86,152</td><td>$183</td><td>20.3%</td></tr><tr><td><b>2026 Q1</b></td><td>$15.46M</td><td>83,533</td><td>$185</td><td>-1.8%</td></tr>
+</table>
+
+<h3 class="sub-section" id="s2_4">2.4 季节性规律</h3>
+<div class="chart-container"><div class="chart" id="r_season"></div></div>
+<div class="insight">
+  <strong>季节性特征：</strong>
+  <ul>
+    <li><b>12月</b>为全年绝对峰值（节假日消费 + 年终促销），Rev 较年均高 40-60%</li>
+    <li><b>3-5月</b>为春季旺季，美国卡车改装和户外活动启动季节</li>
+    <li><b>7-8月</b>为夏季小高峰，暑期自驾/户外需求</li>
+    <li><b>9-10月</b>为相对淡季，需求回落</li>
+    <li>建议备货节奏：11月前完成大促库存准备，2月开始春季推广</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s2_5">2.5 全年大趋势判断</h3>
+<div class="insight">
+  <strong>趋势判断：</strong>
+  <ul>
+    <li>Running Boards 处于<b>快速成长期</b>，2023→2025 年复合增长率约 35%</li>
+    <li>增长驱动力：①美国皮卡/SUV保有量持续增长；②消费者对车辆改装的接受度提升；③双台阶式等创新产品推动客单价和需求同步上升</li>
+    <li>2026年按Q1态势，全年Rev预计 $60-65M，市场仍有充足增长空间</li>
+    <li>Google Trends搜索指数创新高，验证需求端真实增长（非纯供给推动）</li>
+  </ul>
+</div>
+
+<!-- CHAPTER 3: MARKET DIMENSIONS -->
+<h2 class="section" id="ch3">第三章 市场维度拆解</h2>
+
+<h3 class="sub-section" id="s3_1">3.1 品牌格局</h3>
+<div class="metric-cards">
+  <div class="mc"><div class="label">CR5 集中度</div><div class="value">52.6%</div></div>
+  <div class="mc"><div class="label">CR10 集中度</div><div class="value">80.8%</div></div>
+  <div class="mc"><div class="label">品牌总数</div><div class="value">111</div></div>
+  <div class="mc"><div class="label">TOP1</div><div class="value">Tyger Auto</div><div class="change">$6.83M</div></div>
+</div>
+
+<div class="row">
+  <div class="col"><div class="chart-container"><div class="chart" id="r_brandRev"></div></div></div>
+  <div class="col"><div class="chart-container"><div class="chart" id="r_brandUnits"></div></div></div>
+</div>
+
+<table>
+  <tr><th>#</th><th>品牌</th><th>销售额</th><th>Rev%</th><th>销量</th><th>ASIN数</th><th>均价</th><th>评分</th><th>卖家地</th></tr>
+  <tr><td>1</td><td><b>Tyger Auto</b></td><td>$6.83M</td><td>13.0%</td><td>34,103</td><td>73</td><td>$208</td><td>4.7</td><td>US</td></tr><tr><td>2</td><td><b>YZONA</b></td><td>$6.35M</td><td>12.1%</td><td>23,340</td><td>95</td><td>$283</td><td>4.6</td><td>-</td></tr><tr><td>3</td><td><b>COMNOVA AUTOPART</b></td><td>$5.20M</td><td>9.9%</td><td>32,359</td><td>57</td><td>$172</td><td>4.6</td><td>-</td></tr><tr><td>4</td><td><b>SMANOW</b></td><td>$4.92M</td><td>9.3%</td><td>24,236</td><td>40</td><td>$203</td><td>4.6</td><td>CN</td></tr><tr><td>5</td><td><b>AutoBull</b></td><td>$4.41M</td><td>8.4%</td><td>22,286</td><td>31</td><td>$231</td><td>4.3</td><td>CN</td></tr><tr><td>6</td><td><b>AUTOSAVER88</b></td><td>$3.37M</td><td>6.4%</td><td>18,893</td><td>37</td><td>$180</td><td>4.4</td><td>-</td></tr><tr><td>7</td><td><b>YITAMOTOR</b></td><td>$3.35M</td><td>6.4%</td><td>19,181</td><td>66</td><td>$197</td><td>4.4</td><td>-</td></tr><tr><td>8</td><td><b>Binary Star</b></td><td>$3.05M</td><td>5.8%</td><td>13,242</td><td>44</td><td>$221</td><td>4.7</td><td>-</td></tr><tr><td>9</td><td><b>PZ</b></td><td>$2.72M</td><td>5.2%</td><td>19,142</td><td>60</td><td>$165</td><td>4.4</td><td>-</td></tr><tr><td>10</td><td><b>Perfit Liner</b></td><td>$2.36M</td><td>4.5%</td><td>17,481</td><td>40</td><td>$150</td><td>4.6</td><td>-</td></tr>
+</table>
+
+<div class="insight">
+  <strong>品牌格局洞察：</strong>
+  <ul>
+    <li>CR10 = 80.8%，市场<b>中高度集中</b>，头部品牌占据绝对优势，但尾部有111个品牌，说明进入门槛不高</li>
+    <li><b>Tyger Auto</b>：唯一的美国本土头部品牌，73个SKU覆盖全系列，品牌溢价能力强</li>
+    <li><b>YZONA</b>：主打双台阶式，ASP $283 为TOP10最高，走<b>高端差异化路线</b></li>
+    <li><b>COMNOVA AUTOPART</b>：ASP $172 + 评分4.6 + 3995评论（BSR#1），<b>性价比之王</b>路线</li>
+    <li>中国卖家（CN标识）在TOP5中占2席（SMANOW, AutoBull），实际中国卖家市占率更高（Unknown中大部分也是中国卖家）</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s3_2">3.2 价位段分析</h3>
+<div class="chart-container"><div class="chart chart-lg" id="r_price"></div></div>
+<table>
+  <tr><th>价位段</th><th>产品数</th><th>销售额</th><th>Rev%</th><th>销量</th><th>Units%</th><th>ASP</th></tr>
+  <tr><td><b><$50</b></td><td>32</td><td>$295.2K</td><td>0.6%</td><td>6,877</td><td>2.4%</td><td>$43</td></tr><tr><td><b>$50-100</b></td><td>24</td><td>$614.7K</td><td>1.2%</td><td>9,500</td><td>3.3%</td><td>$65</td></tr><tr><td><b>$100-150</b></td><td>217</td><td>$8.78M</td><td>16.7%</td><td>63,741</td><td>22.3%</td><td>$138</td></tr><tr class="highlight"><td><b>$150-200</b></td><td>459</td><td>$23.26M</td><td>44.2%</td><td>131,106</td><td>45.9%</td><td>$177</td></tr><tr><td><b>$200-300</b></td><td>361</td><td>$16.74M</td><td>31.8%</td><td>66,442</td><td>23.3%</td><td>$252</td></tr><tr><td><b>$300-500</b></td><td>72</td><td>$2.52M</td><td>4.8%</td><td>7,430</td><td>2.6%</td><td>$340</td></tr><tr><td><b>$500+</b></td><td>10</td><td>$467.7K</td><td>0.9%</td><td>403</td><td>0.1%</td><td>$1160</td></tr>
+</table>
+<div class="insight">
+  <strong>价位段洞察：</strong>
+  <ul>
+    <li><b>$150-200</b> 是黄金价位段：459个产品、Rev $23.3M（占44.2%），是市场绝对主战场</li>
+    <li><b>$200-300</b> 为第二大段：Rev $16.7M（31.8%），主要由双台阶式产品驱动，ASP更高但竞争相对较少（361个产品）</li>
+    <li>$100-150 是<b>性价比入门段</b>，适合新品牌以低价策略快速起量</li>
+    <li>$300+ 市场很小，仅被 Rough Country、oEdRo 等少数品牌占据</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s3_3">3.3 价位段 x 品牌 x 产品形态</h3>
+<table>
+  <tr><th>品牌</th><th>总Rev</th><th>主力价位段</th><th>主打产品形态</th><th>策略总结</th></tr>
+  <tr><td><b>Tyger Auto</b></td><td>$6.83M</td><td>$190-215</td><td>单步梯为主(LanderX/Access) + 侧梯(Rider) + 平面梯(Riser/Blade/Trax)</td><td>单步梯+侧梯品类主导者，73 SKU全车型覆盖，品牌力最强</td></tr>
+  <tr><td><b>YZONA</b></td><td>$6.35M</td><td>$250-350</td><td>双步梯-经典款(中间台阶)为主 + 双步梯(bed access/三步) + 平面梯</td><td>双步梯品类王者，ASP $283最高；也做bed access(Gladiator $351)</td></tr>
+  <tr><td><b>COMNOVA</b></td><td>$5.20M</td><td>$145-195</td><td>平面梯(碳钢/不锈钢)为主，正在拓展双步梯</td><td>平面梯绝对霸主，BSR#1，4000+评论壁垒</td></tr>
+  <tr><td><b>SMANOW</b></td><td>$4.92M</td><td>$175-265</td><td>单步梯(Drop Down)为主 + 双步梯(bed access: Gladiator $461K)</td><td>单步梯专精，但Gladiator bed access款Rev $461K为隐藏爆款</td></tr>
+  <tr><td><b>AutoBull</b></td><td>$4.41M</td><td>$160-310</td><td>平面梯(铝合金) + 双步梯-经典款(中间台阶)</td><td>双线并行：铝合金平面梯走量($167) + 双步梯高溢价($261-$307)</td></tr>
+  <tr><td><b>AUTOSAVER88</b></td><td>$3.37M</td><td>$140-280</td><td>平面梯(铝合金) + 双步梯-经典款 + 单步梯</td><td>全品类跨价位段，平面梯走量+双步梯取利</td></tr>
+  <tr><td><b>YITAMOTOR</b></td><td>$3.35M</td><td>$155-260</td><td>平面梯(铝合金)为绝对主力 + 少量双步梯</td><td>铝合金平面梯专精，66 SKU但双步梯仅1款(Wrangler)</td></tr>
+  <tr><td><b>Binary Star</b></td><td>$3.05M</td><td>$170-320</td><td>双步梯(bed access/4步)多款 + 单步梯(Curve) + 双步梯经典</td><td>bed access品类先行者，Tacoma bed access $505K为旗舰爆款</td></tr>
+  <tr><td><b>PZ</b></td><td>$2.72M</td><td>$125-205</td><td>平面梯(铝合金/不锈钢)为绝对主力 + 少量双步梯</td><td>铝合金平面梯性价比入门，60 SKU广撒网</td></tr>
+  <tr><td><b>Perfit Liner</b></td><td>$2.36M</td><td>$110-200</td><td>平面梯(铝合金/不锈钢)为绝对主力 + 少量单步梯</td><td>最低均价入门品牌，铝合金/不锈钢双材质</td></tr>
+</table>
+
+<h3 class="sub-section" id="s3_4">3.4 星级/评论分析</h3>
+<div class="chart-container"><div class="chart" id="r_rating"></div></div>
+<table>
+  <tr><th>评分段</th><th>产品数</th><th>销售额</th><th>Rev%</th><th>销量</th></tr>
+  <tr><td><b>4.5-5.0</b></td><td>681</td><td>$35.67M</td><td>67.7%</td><td>194,263</td></tr><tr><td><b>4.0-4.4</b></td><td>398</td><td>$11.63M</td><td>22.1%</td><td>63,743</td></tr><tr><td><b>3.5-3.9</b></td><td>20</td><td>$791.2K</td><td>1.5%</td><td>4,827</td></tr><tr><td><b>3.0-3.4</b></td><td>0</td><td>$0</td><td>0.0%</td><td>0</td></tr><tr><td><b><3.0</b></td><td>4</td><td>$4.1K</td><td>0.0%</td><td>29</td></tr><tr><td><b>No Rating</b></td><td>72</td><td>$4.59M</td><td>8.7%</td><td>22,637</td></tr>
+</table>
+<div class="insight">
+  <strong>评分/评论洞察：</strong>
+  <ul>
+    <li>4.5+ 评分产品占 Rev 的 <b>67.7%</b>，消费者对评分敏感度极高</li>
+    <li>评分低于4.0的产品几乎无法获得显著销量，<b>4.0是生存线</b></li>
+    <li>头部产品（COMNOVA BSR#1）评论数近4000，形成深厚的<b>评论壁垒</b></li>
+    <li>但72个无评分新品也获得了 $4.6M Rev（8.7%），说明市场对<b>新品有一定包容度</b></li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s3_5">3.5 上新趋势</h3>
+<div class="chart-container"><div class="chart" id="r_launch"></div></div>
+<table>
+  <tr><th>年份</th><th>新品数</th><th>销售额</th><th>Rev%</th></tr>
+  <tr><td><b>2017</b></td><td>11</td><td>$265.3K</td><td>0.5%</td></tr><tr><td><b>2018</b></td><td>20</td><td>$41.6K</td><td>0.1%</td></tr><tr><td><b>2019</b></td><td>31</td><td>$3.50M</td><td>6.6%</td></tr><tr><td><b>2020</b></td><td>53</td><td>$4.37M</td><td>8.3%</td></tr><tr><td><b>2021</b></td><td>64</td><td>$6.79M</td><td>12.9%</td></tr><tr><td><b>2022</b></td><td>113</td><td>$4.89M</td><td>9.3%</td></tr><tr><td><b>2023</b></td><td>200</td><td>$10.17M</td><td>19.3%</td></tr><tr><td><b>2024</b></td><td>381</td><td>$18.57M</td><td>35.2%</td></tr><tr><td><b>2025</b></td><td>274</td><td>$3.97M</td><td>7.5%</td></tr>
+</table>
+<div class="insight">
+  <strong>上新洞察：</strong>
+  <ul>
+    <li>2024年上新<b>381个</b>产品，创历史新高，Rev贡献 $18.6M（35.2%），说明大量卖家看好此赛道</li>
+    <li>2025年上新274个但Rev仅 $4.0M，多数仍在成长期</li>
+    <li>上新加速意味着<b>竞争加剧</b>，差异化和评论积累速度成为关键</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s3_6">3.6 产品功能拆解</h3>
+<p>基于 BSR TOP99 产品的标题和卖点 NLP 语义分析，提取以下核心功能维度：</p>
+<table>
+  <tr><th>功能特征</th><th>覆盖产品数</th><th>覆盖率</th><th>定位说明</th></tr>
+  <tr><td><b>Non-slip Surface / 防滑踏面</b></td><td>90+</td><td>>90%</td><td>标配功能，几乎所有产品都有</td></tr>
+  <tr><td><b>Powder Coated / 粉末涂层</b></td><td>85+</td><td>>85%</td><td>标配，防锈基础处理</td></tr>
+  <tr><td><b>Bolt-on No Drill / 免钻孔安装</b></td><td>80+</td><td>>80%</td><td>标配卖点，降低安装门槛</td></tr>
+  <tr><td><b>双步梯设计 / Two-Stair Design</b></td><td>24(经典)+3(bed access系)</td><td>27.3%</td><td>中高端差异化，ASP $260 vs 平面梯$160</td></tr>
+  <tr><td><b>E-coating / 电泳涂层防锈</b></td><td>~15</td><td>~15%</td><td>高端防锈工艺，Tyger Auto 系列标配</td></tr>
+  <tr><td><b>Bed Access Step / 货厢接近踏板</b></td><td>3</td><td>3%</td><td>高端差异化，Binary Star 独创</td></tr>
+  <tr><td><b>4-Step Design / 四台阶设计</b></td><td>3</td><td>3%</td><td>顶级差异化，Binary Star 旗舰</td></tr>
+  <tr><td><b>LED Light / LED灯</b></td><td>极少</td><td><2%</td><td>罕见附加功能，潜在差异化方向</td></tr>
+</table>
+
+<div class="insight">
+  <strong>功能拆解洞察：</strong>
+  <ul>
+    <li>防滑踏面、粉末涂层、免钻孔安装已成为<b>三大标配</b>，无差异化价值</li>
+    <li>双台阶设计是目前最成功的<b>功能创新</b>，将ASP从$152提升至$225，溢价率48%</li>
+    <li>E-coating电泳涂层是Tyger Auto的品牌特色，可作为品质升级的差异化卖点</li>
+    <li>Bed Access（货厢接近）和4-Step设计是Binary Star的独创功能，市场接受度在验证中</li>
+    <li>LED照明功能在本类目几乎空白，可能是差异化创新的蓝海方向</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s3_7">3.7 奇点分析 (Key Differentiators)</h3>
+
+<p><b>奇点1：产品形态 (Product Form)</b> — 决定ASP天花板的核心参数</p>
+<div class="chart-container"><div class="chart" id="r_qd1"></div></div>
+<table>
+  <tr><th>产品形态</th><th>产品数</th><th>销售额</th><th>Rev%</th><th>销量</th><th>Units%</th><th>ASP</th></tr>
+  <tr><td><b>平面梯</b></td><td>41</td><td>$10.45M</td><td>47.0%</td><td>68,788</td><td>53.9%</td><td>$152</td></tr><tr><td><b>单步梯</b></td><td>17</td><td>$4.46M</td><td>20.1%</td><td>22,445</td><td>17.6%</td><td>$199</td></tr><tr><td><b>双步梯-经典款(中间台阶)</b></td><td>24</td><td>$4.29M</td><td>19.3%</td><td>16,532</td><td>12.9%</td><td>$260</td></tr><tr><td><b>侧梯</b></td><td>9</td><td>$2.05M</td><td>9.2%</td><td>10,621</td><td>8.3%</td><td>$193</td></tr><tr><td><b>双步梯(中间台阶+bed access)</b></td><td>1</td><td>$211.6K</td><td>1.0%</td><td>757</td><td>0.6%</td><td>$279</td></tr><tr><td><b>双步梯(bed access台阶)</b></td><td>1</td><td>$152.5K</td><td>0.7%</td><td>700</td><td>0.5%</td><td>$218</td></tr><tr><td><b>双步梯(前面+中间+bed access)</b></td><td>1</td><td>$1.2K</td><td>0.0%</td><td>4</td><td>0.0%</td><td>$299</td></tr>
+</table>
+
+<p><b>奇点2：材质 (Material)</b></p>
+<div class="chart-container"><div class="chart" id="r_qd2"></div></div>
+<table>
+  <tr><th>材质</th><th>产品数</th><th>销售额</th><th>Rev%</th><th>销量</th><th>ASP</th></tr>
+  <tr><td><b>Carbon Steel</b></td><td>60</td><td>$13.85M</td><td>62.2%</td><td>66,868</td><td>$207</td></tr><tr><td><b>Aluminum</b></td><td>21</td><td>$5.28M</td><td>23.7%</td><td>36,441</td><td>$145</td></tr><tr><td><b>Stainless Steel</b></td><td>7</td><td>$2.05M</td><td>9.2%</td><td>14,440</td><td>$142</td></tr><tr><td><b>ABS Plastic</b></td><td>3</td><td>$521.9K</td><td>2.3%</td><td>3,485</td><td>$150</td></tr><tr><td><b>Other</b></td><td>5</td><td>$472.0K</td><td>2.1%</td><td>4,833</td><td>$98</td></tr><tr><td><b>Metal/Iron</b></td><td>3</td><td>$77.6K</td><td>0.3%</td><td>1,649</td><td>$47</td></tr>
+</table>
+
+<p><b>奇点3：适配车型 (Target Vehicle)</b></p>
+<div class="chart-container"><div class="chart" id="r_qd3"></div></div>
+<table>
+  <tr><th>车型</th><th>BSR产品数</th><th>销售额</th><th>Rev%</th><th>销量</th><th>ASP</th></tr>
+  <tr><td><b>Chevy Silverado/GMC Sierra</b></td><td>26</td><td>$9.35M</td><td>42.0%</td><td>51,057</td><td>$183</td></tr><tr><td><b>Jeep Wrangler</b></td><td>14</td><td>$3.24M</td><td>14.5%</td><td>15,726</td><td>$206</td></tr><tr><td><b>Dodge Ram</b></td><td>19</td><td>$3.19M</td><td>14.3%</td><td>19,168</td><td>$166</td></tr><tr><td><b>Ford F-Series</b></td><td>11</td><td>$3.14M</td><td>14.1%</td><td>20,295</td><td>$155</td></tr><tr><td><b>Chevy Colorado/GMC Canyon</b></td><td>7</td><td>$1.07M</td><td>4.8%</td><td>5,523</td><td>$193</td></tr><tr><td><b>Jeep Gladiator</b></td><td>3</td><td>$877.0K</td><td>3.9%</td><td>4,340</td><td>$202</td></tr><tr><td><b>Toyota Tacoma</b></td><td>11</td><td>$754.0K</td><td>3.4%</td><td>3,658</td><td>$206</td></tr><tr><td><b>Other</b></td><td>5</td><td>$625.2K</td><td>2.8%</td><td>7,869</td><td>$79</td></tr>
+</table>
+
+<div class="insight">
+  <strong>奇点分析总结 — 最优组合：</strong>
+  <ul>
+    <li><b>推荐奇点组合：双步梯-经典款(中间台阶) + Carbon Steel + Chevy Silverado/GMC Sierra</b></li>
+    <li>理由：双步梯经典款ASP $260（最高溢价）+ 碳钢材质（Rev占比最大）+ Silverado/Sierra（最大车型市场）</li>
+    <li>定价区间：$220-270，对标 YZONA、AutoBull、AUTOSAVER88</li>
+    <li>备选组合：双步梯(中间台阶+bed access) + Carbon Steel + Silverado/Sierra（Binary Star/SMANOW/YZONA在做，ASP $218-$351，竞品少但已验证）</li>
+  </ul>
+</div>
+
+<!-- CHAPTER 4: CONCLUSIONS -->
+<h2 class="section" id="ch4">第四章 核心结论与入场建议</h2>
+
+<h3 class="sub-section" id="s4_1">4.1 市场判断总览</h3>
+<table>
+  <tr><th>维度</th><th>判断</th><th>评分</th><th>说明</th></tr>
+  <tr><td>市场增长</td><td>强劲增长</td><td style="color:#22c55e;font-weight:700">★★★★★</td><td>2025 YOY +48.8%，2026 Q1 延续高增</td></tr>
+  <tr><td>市场规模</td><td>中大型</td><td style="color:#22c55e;font-weight:700">★★★★</td><td>年Rev $50M+，仍在快速扩容</td></tr>
+  <tr><td>ASP水平</td><td>高客单价</td><td style="color:#22c55e;font-weight:700">★★★★★</td><td>ASP $185，双台阶式可达$225+</td></tr>
+  <tr><td>竞争强度</td><td>中高</td><td style="color:#f59e0b;font-weight:700">★★★</td><td>CR10=80.8%，头部集中但新品仍有机会</td></tr>
+  <tr><td>品牌心智</td><td>品牌化趋势明显</td><td style="color:#f59e0b;font-weight:700">★★★</td><td>Tyger Auto等建立品牌认知，但多数品牌心智弱</td></tr>
+  <tr><td>季节性</td><td>弱季节性</td><td style="color:#22c55e;font-weight:700">★★★★</td><td>全年有需求，12月峰值，淡旺季差<40%</td></tr>
+  <tr><td>新品难度</td><td>中等</td><td style="color:#f59e0b;font-weight:700">★★★</td><td>需评论积累，但无评分新品也有$4.6M Rev</td></tr>
+</table>
+
+<h3 class="sub-section" id="s4_2">4.2 入场机会矩阵</h3>
+<div class="chart-container"><div class="chart chart-lg" id="r_bubble"></div></div>
+<table>
+  <tr><th>赛道</th><th>市场规模</th><th>ASP</th><th>竞品密度</th><th>机会评分</th></tr>
+  <tr><td><b>双步梯-经典款 for Silverado/Sierra</b></td><td>大</td><td>$260+</td><td>中</td><td style="color:#22c55e;font-weight:700">★★★★★</td></tr>
+  <tr><td><b>双步梯-经典款 for Wrangler/Gladiator</b></td><td>中</td><td>$260+</td><td>中低</td><td style="color:#22c55e;font-weight:700">★★★★</td></tr>
+  <tr><td><b>双步梯(中间+bed access)</b></td><td>中（已验证）</td><td>$218-$351</td><td>低（3品牌）</td><td style="color:#22c55e;font-weight:700">★★★★★</td></tr>
+  <tr><td><b>双步梯-经典款 for Ram 1500</b></td><td>中</td><td>$260+</td><td>中</td><td style="color:#22c55e;font-weight:700">★★★★</td></tr>
+  <tr><td>平面梯 for F-150 (铝合金)</td><td>大</td><td>$130-160</td><td>高</td><td style="color:#f59e0b;font-weight:700">★★★</td></tr>
+  <tr><td>单步梯 (Tyger LanderX风格)</td><td>中</td><td>$195-215</td><td>低（Tyger主导）</td><td style="color:#f59e0b;font-weight:700">★★★</td></tr>
+</table>
+
+<h3 class="sub-section" id="s4_3">4.3 推荐入场路径</h3>
+<div class="insight">
+  <strong>首选方向：双步梯-经典款(中间台阶) for Chevy Silverado/GMC Sierra Crew Cab</strong>
+  <ul>
+    <li>奇点组合：双步梯(中间台阶) + 碳钢 + E-coating防锈 + 6" 宽踏面</li>
+    <li>定价区间：$219-$259（低于YZONA $270，高于平面梯$150）</li>
+    <li>对标竞品：YZONA B0D6KBKFVJ（Rev $1.34M），AUTOSAVER88，COMNOVA</li>
+    <li>核心壁垒：产品设计（台阶角度/宽度）+ 安装便利性 + 评论积累</li>
+  </ul>
+</div>
+<div class="insight">
+  <strong>备选方向A：双步梯(中间台阶+bed access) for Silverado/Sierra</strong>
+  <ul>
+    <li>奇点组合：中间台阶 + bed access台阶 + 碳钢 + E-coating</li>
+    <li>定价区间：$269-$299（对标Binary Star B0DQL2418N ASP $279）</li>
+    <li>当前Binary Star/SMANOW/YZONA均有布局，竞品少但已验证市场需求</li>
+    <li>SMANOW Gladiator bed access款Rev $461K（隐藏爆款），Binary Star Tacoma bed access款Rev $505K</li>
+  </ul>
+</div>
+<div class="insight" style="border-left-color:#ef4444;background:#fef2f2;">
+  <strong style="color:#991b1b;">应避免方向：</strong>
+  <ul style="color:#7f1d1d;">
+    <li>$100以下低价平板式：利润薄，评论壁垒深（COMNOVA 4000+评论），新品难以突围</li>
+    <li>替换电机市场：技术门槛高，市场小众，已被3-4个品牌瓜分</li>
+    <li>通用型踏板：品类定位模糊，难以建立差异化</li>
+  </ul>
+</div>
+
+<h3 class="sub-section" id="s4_4">4.4 差异化策略</h3>
+<table>
+  <tr><th>策略方向</th><th>数据支撑</th><th>参考案例</th><th>实施难度</th></tr>
+  <tr><td><b>bed access台阶差异化</b><br/>中间台阶+bed access</td><td>ASP $218-$351，Binary Star/SMANOW/YZONA已布局，竞品少</td><td>SMANOW Gladiator $461K, Binary Star Tacoma $505K</td><td class="risk-mid">中等</td></tr>
+  <tr><td><b>LED集成照明</b><br/>踏板内置LED灯</td><td>市场几乎空白，<2%覆盖率</td><td>暂无标杆产品</td><td class="risk-mid">中等</td></tr>
+  <tr><td><b>E-coating防锈升级</b><br/>电泳涂层工艺</td><td>Tyger Auto系列标配，品质感知明显</td><td>Tyger Auto LanderX系列</td><td class="risk-low">低</td></tr>
+  <tr><td><b>车型专精化</b><br/>深耕1-2个车型</td><td>Silverado/Sierra占BSR最大份额</td><td>COMNOVA 专注主流车型</td><td class="risk-low">低</td></tr>
+  <tr><td><b>轻量化铝合金+高强度</b><br/>材质差异化</td><td>铝合金ASP $153但重量轻，可结合双台阶</td><td>暂无双台阶铝合金产品</td><td class="risk-high">高</td></tr>
+</table>
+
+<h3 class="sub-section" id="s4_5">4.5 风险提示</h3>
+<table>
+  <tr><th>风险</th><th>严重程度</th><th>说明</th><th>应对策略</th></tr>
+  <tr><td>竞争加剧</td><td class="risk-high">高</td><td>2024年上新381个产品，价格战风险加大</td><td>通过差异化设计和品牌建设避开低价竞争</td></tr>
+  <tr><td>评论壁垒</td><td class="risk-mid">中</td><td>头部COMNOVA有4000+评论，新品冷启动困难</td><td>前期配合Vine计划+广告投放快速积累</td></tr>
+  <tr><td>车型适配风险</td><td class="risk-mid">中</td><td>新车型年年更新，需持续开模适配</td><td>优先覆盖3年内不换代的主力车型</td></tr>
+  <tr><td>关税/物流成本</td><td class="risk-mid">中</td><td>产品体积大重量重，海运成本高</td><td>优化包装设计，考虑海外仓备货</td></tr>
+  <tr><td>退货/安装投诉</td><td class="risk-low">低</td><td>安装不当导致退货和差评</td><td>提供详细安装视频+二维码说明书</td></tr>
+</table>
+
+</div><!-- end main -->
+
+<script>
+function initCharts(){
+  // Monthly trend
+  var c=echarts.init(document.getElementById('r_trend'));
+  c.setOption({tooltip:{trigger:'axis'},legend:{data:['销售额','销量'],top:5},grid:{left:80,right:80,bottom:50,top:50},
+    xAxis:{type:'category',data:["2023-01","2023-02","2023-03","2023-04","2023-05","2023-06","2023-07","2023-08","2023-09","2023-10","2023-11","2023-12","2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03"],axisLabel:{rotate:45,fontSize:10}},
+    yAxis:[{type:'value',name:'销售额($)',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+           {type:'value',name:'销量',axisLabel:{formatter:function(v){return(v/1e3).toFixed(0)+'K'}},splitLine:{show:false}}],
+    series:[{name:'销售额',type:'line',data:[2399856.08,2242529.8,2277209.1,2591680.38,2724744,2274556.12,2456863.3,2559793.84,2025848.28,2022434.41,2326699.04,3080765.85,1485647.16,2234493.98,2929192.43,2654087.57,2801777.05,2545811.42,3054973.22,3117702.05,2993301.96,3324096.72,3574985.3,4687805.2,3138680.43,3649207.75,4301860.99,4320336.07,4248712.24,4191440.34,4547251.68,4330272.42,4209599.15,4534249.13,4624648.84,6586127.32,4747377.35,4964770.94,5751730.69],smooth:true,itemStyle:{color:'#3b82f6'},areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(59,130,246,0.2)'},{offset:1,color:'rgba(59,130,246,0)'}]}},
+      markPoint:{data:[{type:'max',name:'最高'},{type:'min',name:'最低'}],label:{formatter:function(p){return '$'+(p.value/1e6).toFixed(1)+'M'}}}},
+      {name:'销量',type:'line',yAxisIndex:1,data:[13910,12757,12169,13915,14595,12436,13162,13603,10655,10917,12440,16479,8352,12136,15654,14533,15330,14045,16320,17378,16150,17806,18979,24190,16321,19534,23413,23249,22502,22257,25064,23993,23014,24925,26053,35174,25693,26870,30970],smooth:true,itemStyle:{color:'#f59e0b'},
+      markPoint:{data:[{type:'max'},{type:'min'}],label:{formatter:function(p){return(p.value/1e3).toFixed(1)+'K'}}}}]
+  });
+
+  // ASP
+  var c2=echarts.init(document.getElementById('r_asp'));
+  c2.setOption({tooltip:{trigger:'axis',formatter:function(p){return p[0].axisValue+'<br/>ASP: $'+p[0].value}},grid:{left:60,right:20,bottom:50,top:30},
+    xAxis:{type:'category',data:["2023-01","2023-02","2023-03","2023-04","2023-05","2023-06","2023-07","2023-08","2023-09","2023-10","2023-11","2023-12","2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03"],axisLabel:{rotate:45,fontSize:10}},
+    yAxis:{type:'value',min:150,max:220,axisLabel:{formatter:'{value}'},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    series:[{type:'line',data:[172.53,175.79,187.13,186.25,186.69,182.9,186.66,188.18,190.13,185.26,187.03,186.95,177.88,184.12,187.12,182.62,182.76,181.26,187.19,179.41,185.34,186.68,188.37,193.79,192.31,186.81,183.74,185.83,188.81,188.32,181.43,180.48,182.91,181.92,177.51,187.24,184.77,184.77,185.72],smooth:true,itemStyle:{color:'#22c55e'},areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(34,197,94,0.15)'},{offset:1,color:'rgba(34,197,94,0)'}]}}}]
+  });
+
+  // L1 Rev pie
+  var c3=echarts.init(document.getElementById('r_l1rev'));
+  c3.setOption({title:{text:'销售额分布',left:'center',textStyle:{fontSize:14}},tooltip:{trigger:'item',formatter:'{b}: {d}%'},
+    series:[{type:'pie',radius:['30%','60%'],data:[{"name":"平面梯","value":10454520},{"name":"单步梯","value":4464222},{"name":"双步梯-经典款(中间台阶)","value":4291900},{"name":"侧梯","value":2049891},{"name":"替换配件","value":485155},{"name":"双步梯(中间台阶+bed access)","value":211566},{"name":"双步梯(bed access台阶)","value":152479},{"name":"通用踏板","value":140057},{"name":"双步梯(前面+中间+bed access)","value":1196}],label:{formatter:'{b}\n{d}%',fontSize:11}}]
+  });
+  // L1 Units pie
+  var c4=echarts.init(document.getElementById('r_l1units'));
+  c4.setOption({title:{text:'销量分布',left:'center',textStyle:{fontSize:14}},tooltip:{trigger:'item',formatter:'{b}: {d}%'},
+    series:[{type:'pie',radius:['30%','60%'],data:[{"name":"平面梯","value":68788},{"name":"单步梯","value":22445},{"name":"双步梯-经典款(中间台阶)","value":16532},{"name":"侧梯","value":10621},{"name":"替换配件","value":6187},{"name":"双步梯(中间台阶+bed access)","value":757},{"name":"双步梯(bed access台阶)","value":700},{"name":"通用踏板","value":1682},{"name":"双步梯(前面+中间+bed access)","value":4}],label:{formatter:'{b}\n{d}%',fontSize:11}}]
+  });
+
+  // Category grouped bar (new 6-type system)
+  var c5=echarts.init(document.getElementById('r_l2bar'));
+  var catLabels=["平面梯","单步梯","双步梯-经典款(中间台阶)","侧梯","双步梯(中间台阶+bed access)","双步梯(bed access台阶)","双步梯(前面+中间+bed access)"];
+  var catRevPct=[47,20.1,19.3,9.2,1,0.7,0];
+  var catUnitsPct=[53.9,17.6,12.9,8.3,0.6,0.5,0];
+  var catAsp=[152,199,260,193,279,218,299];
+  c5.setOption({tooltip:{trigger:'axis'},legend:{data:['Rev占比%','Units占比%','ASP'],top:5},grid:{left:60,right:60,bottom:100,top:50},
+    xAxis:{type:'category',data:catLabels,axisLabel:{rotate:35,fontSize:10}},
+    yAxis:[{type:'value',name:'占比(%)',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+           {type:'value',name:'ASP($)',splitLine:{show:false}}],
+    series:[{name:'Rev占比%',type:'bar',data:catRevPct,itemStyle:{color:'#3b82f6'}},
+            {name:'Units占比%',type:'bar',data:catUnitsPct,itemStyle:{color:'#f59e0b'}},
+            {name:'ASP',type:'line',yAxisIndex:1,data:catAsp,itemStyle:{color:'#ef4444'},symbol:'circle',symbolSize:8}]
+  });
+
+  // Google Trends
+  var c6=echarts.init(document.getElementById('r_gt'));
+  c6.setOption({tooltip:{trigger:'axis'},grid:{left:50,right:20,bottom:50,top:30},dataZoom:[{type:'inside'},{type:'slider',bottom:5}],
+    xAxis:{type:'category',data:["2021-03-28","2021-04-04","2021-04-11","2021-04-18","2021-04-25","2021-05-02","2021-05-09","2021-05-16","2021-05-23","2021-05-30","2021-06-06","2021-06-13","2021-06-20","2021-06-27","2021-07-04","2021-07-11","2021-07-18","2021-07-25","2021-08-01","2021-08-08","2021-08-15","2021-08-22","2021-08-29","2021-09-05","2021-09-12","2021-09-19","2021-09-26","2021-10-03","2021-10-10","2021-10-17","2021-10-24","2021-10-31","2021-11-07","2021-11-14","2021-11-21","2021-11-28","2021-12-05","2021-12-12","2021-12-19","2021-12-26","2022-01-02","2022-01-09","2022-01-16","2022-01-23","2022-01-30","2022-02-06","2022-02-13","2022-02-20","2022-02-27","2022-03-06","2022-03-13","2022-03-20","2022-03-27","2022-04-03","2022-04-10","2022-04-17","2022-04-24","2022-05-01","2022-05-08","2022-05-15","2022-05-22","2022-05-29","2022-06-05","2022-06-12","2022-06-19","2022-06-26","2022-07-03","2022-07-10","2022-07-17","2022-07-24","2022-07-31","2022-08-07","2022-08-14","2022-08-21","2022-08-28","2022-09-04","2022-09-11","2022-09-18","2022-09-25","2022-10-02","2022-10-09","2022-10-16","2022-10-23","2022-10-30","2022-11-06","2022-11-13","2022-11-20","2022-11-27","2022-12-04","2022-12-11","2022-12-18","2022-12-25","2023-01-01","2023-01-08","2023-01-15","2023-01-22","2023-01-29","2023-02-05","2023-02-12","2023-02-19","2023-02-26","2023-03-05","2023-03-12","2023-03-19","2023-03-26","2023-04-02","2023-04-09","2023-04-16","2023-04-23","2023-04-30","2023-05-07","2023-05-14","2023-05-21","2023-05-28","2023-06-04","2023-06-11","2023-06-18","2023-06-25","2023-07-02","2023-07-09","2023-07-16","2023-07-23","2023-07-30","2023-08-06","2023-08-13","2023-08-20","2023-08-27","2023-09-03","2023-09-10","2023-09-17","2023-09-24","2023-10-01","2023-10-08","2023-10-15","2023-10-22","2023-10-29","2023-11-05","2023-11-12","2023-11-19","2023-11-26","2023-12-03","2023-12-10","2023-12-17","2023-12-24","2023-12-31","2024-01-07","2024-01-14","2024-01-21","2024-01-28","2024-02-04","2024-02-11","2024-02-18","2024-02-25","2024-03-03","2024-03-10","2024-03-17","2024-03-24","2024-03-31","2024-04-07","2024-04-14","2024-04-21","2024-04-28","2024-05-05","2024-05-12","2024-05-19","2024-05-26","2024-06-02","2024-06-09","2024-06-16","2024-06-23","2024-06-30","2024-07-07","2024-07-14","2024-07-21","2024-07-28","2024-08-04","2024-08-11","2024-08-18","2024-08-25","2024-09-01","2024-09-08","2024-09-15","2024-09-22","2024-09-29","2024-10-06","2024-10-13","2024-10-20","2024-10-27","2024-11-03","2024-11-10","2024-11-17","2024-11-24","2024-12-01","2024-12-08","2024-12-15","2024-12-22","2024-12-29","2025-01-05","2025-01-12","2025-01-19","2025-01-26","2025-02-02","2025-02-09","2025-02-16","2025-02-23","2025-03-02","2025-03-09","2025-03-16","2025-03-23","2025-03-30","2025-04-06","2025-04-13","2025-04-20","2025-04-27","2025-05-04","2025-05-11","2025-05-18","2025-05-25","2025-06-01","2025-06-08","2025-06-15","2025-06-22","2025-06-29","2025-07-06","2025-07-13","2025-07-20","2025-07-27","2025-08-03","2025-08-10","2025-08-17","2025-08-24","2025-08-31","2025-09-07","2025-09-14","2025-09-21","2025-09-28","2025-10-05","2025-10-12","2025-10-19","2025-10-26","2025-11-02","2025-11-09","2025-11-16","2025-11-23","2025-11-30","2025-12-07","2025-12-14","2025-12-21","2025-12-28","2026-01-04","2026-01-11","2026-01-18","2026-01-25","2026-02-01","2026-02-08","2026-02-15","2026-02-22","2026-03-01","2026-03-08","2026-03-15","2026-03-22","2026-03-29"],axisLabel:{rotate:45,fontSize:9,interval:20}},
+    yAxis:{type:'value',name:'搜索指数',splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    series:[{type:'line',data:[99,95,96,93,93,89,83,79,85,85,76,83,80,79,79,81,83,81,80,75,78,83,77,73,75,75,78,76,76,75,76,74,74,73,78,82,81,77,76,77,71,73,69,77,79,80,82,84,80,81,78,79,79,73,76,75,77,74,67,66,68,67,66,64,70,65,65,69,65,68,67,70,73,67,66,64,65,65,64,64,64,63,65,64,63,60,68,65,66,64,59,71,66,68,69,67,68,71,67,71,73,76,71,76,71,67,74,70,68,67,67,71,72,71,70,70,70,69,67,67,68,69,70,69,66,64,71,67,65,67,67,62,61,67,65,62,66,64,72,66,73,66,70,74,74,62,60,73,70,69,79,75,70,69,80,72,72,66,75,74,70,71,74,61,63,67,65,77,64,64,71,76,73,70,68,77,71,71,67,65,69,65,61,68,67,65,69,72,62,73,72,71,73,80,71,73,81,72,68,65,73,72,76,75,77,86,81,79,75,80,86,77,86,75,88,78,76,76,79,80,76,74,74,92,83,85,77,77,98,79,90,79,70,77,77,77,67,68,76,68,71,72,77,86,77,79,73,77,81,73,73,81,67,76,92,96,87,97,100,87,94,92],smooth:true,itemStyle:{color:'#8b5cf6'},areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(139,92,246,0.2)'},{offset:1,color:'rgba(139,92,246,0)'}]}},symbol:'none'}]
+  });
+
+  // YOY bar
+  var c7=echarts.init(document.getElementById('r_yoy'));
+  var yoyYears=['2023','2024','2025','2026'];
+  var yoyColors=['#94a3b8','#3b82f6','#22c55e','#f59e0b'];
+  var yoySeries=yoyYears.map(function(y,i){
+    var data=[];for(var m=1;m<=12;m++){
+      var key=y+'-'+String(m).padStart(2,'0');
+      var found=[{"k":"2023-01","r":2399856.08},{"k":"2023-02","r":2242529.8},{"k":"2023-03","r":2277209.1},{"k":"2023-04","r":2591680.38},{"k":"2023-05","r":2724744},{"k":"2023-06","r":2274556.12},{"k":"2023-07","r":2456863.3},{"k":"2023-08","r":2559793.84},{"k":"2023-09","r":2025848.28},{"k":"2023-10","r":2022434.41},{"k":"2023-11","r":2326699.04},{"k":"2023-12","r":3080765.85},{"k":"2024-01","r":1485647.16},{"k":"2024-02","r":2234493.98},{"k":"2024-03","r":2929192.43},{"k":"2024-04","r":2654087.57},{"k":"2024-05","r":2801777.05},{"k":"2024-06","r":2545811.42},{"k":"2024-07","r":3054973.22},{"k":"2024-08","r":3117702.05},{"k":"2024-09","r":2993301.96},{"k":"2024-10","r":3324096.72},{"k":"2024-11","r":3574985.3},{"k":"2024-12","r":4687805.2},{"k":"2025-01","r":3138680.43},{"k":"2025-02","r":3649207.75},{"k":"2025-03","r":4301860.99},{"k":"2025-04","r":4320336.07},{"k":"2025-05","r":4248712.24},{"k":"2025-06","r":4191440.34},{"k":"2025-07","r":4547251.68},{"k":"2025-08","r":4330272.42},{"k":"2025-09","r":4209599.15},{"k":"2025-10","r":4534249.13},{"k":"2025-11","r":4624648.84},{"k":"2025-12","r":6586127.32},{"k":"2026-01","r":4747377.35},{"k":"2026-02","r":4964770.94},{"k":"2026-03","r":5751730.69}].find(function(t){return t.k===key;});
+      data.push(found?found.r:null);
+    }
+    return{name:y,type:'bar',data:data,itemStyle:{color:yoyColors[i]}};
+  });
+  c7.setOption({tooltip:{trigger:'axis',formatter:function(ps){var s=ps[0].axisValue+'<br/>';ps.forEach(function(p){if(p.value)s+=p.seriesName+': $'+(p.value/1e6).toFixed(2)+'M<br/>';});return s;}},
+    legend:{top:5},grid:{left:70,right:20,bottom:30,top:50},
+    xAxis:{type:'category',data:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']},
+    yAxis:{type:'value',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    series:yoySeries
+  });
+
+  // Seasonality
+  var c8=echarts.init(document.getElementById('r_season'));
+  c8.setOption({tooltip:{trigger:'axis'},grid:{left:70,right:20,bottom:30,top:30},
+    xAxis:{type:'category',data:["01月","02月","03月","04月","05月","06月","07月","08月","09月","10月","11月","12月"]},
+    yAxis:{type:'value',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    series:[{type:'bar',data:[2942890,3272751,3814998,3188701,3258411,3003936,3353029,3335923,3076250,3293593,3508778,4784899],itemStyle:{color:function(p){var v=p.dataIndex;return(v===11)?'#ef4444':(v>=2&&v<=4)?'#3b82f6':(v>=6&&v<=7)?'#22c55e':'#94a3b8';}},
+      label:{show:true,position:'top',formatter:function(p){return '$'+(p.value/1e6).toFixed(1)+'M'},fontSize:10}}]
+  });
+
+  // Brand pies
+  var bRevData=[{"name":"Tyger Auto","value":6833901},{"name":"YZONA","value":6354239},{"name":"COMNOVA AUTOPART","value":5196278},{"name":"SMANOW","value":4916240},{"name":"AutoBull","value":4407289},{"name":"AUTOSAVER88","value":3374762},{"name":"YITAMOTOR","value":3351585},{"name":"Binary Star","value":3052315},{"name":"PZ","value":2719458},{"name":"Perfit Liner","value":2356681},{"name":"其他","value":10119638}];
+  var bUnitsData=[{"name":"Tyger Auto","value":34103},{"name":"YZONA","value":23340},{"name":"COMNOVA AUTOPART","value":32359},{"name":"SMANOW","value":24236},{"name":"AutoBull","value":22286},{"name":"AUTOSAVER88","value":18893},{"name":"YITAMOTOR","value":19181},{"name":"Binary Star","value":13242},{"name":"PZ","value":19142},{"name":"Perfit Liner","value":17481},{"name":"其他","value":61236}];
+  var c9=echarts.init(document.getElementById('r_brandRev'));
+  c9.setOption({title:{text:'品牌销售额',left:'center',textStyle:{fontSize:14}},tooltip:{trigger:'item',formatter:'{b}: {d}%'},
+    series:[{type:'pie',radius:['25%','55%'],data:bRevData,label:{formatter:'{b}\n{d}%',fontSize:10}}]
+  });
+  var c10=echarts.init(document.getElementById('r_brandUnits'));
+  c10.setOption({title:{text:'品牌销量',left:'center',textStyle:{fontSize:14}},tooltip:{trigger:'item',formatter:'{b}: {d}%'},
+    series:[{type:'pie',radius:['25%','55%'],data:bUnitsData,label:{formatter:'{b}\n{d}%',fontSize:10}}]
+  });
+
+  // Price chart
+  var c11=echarts.init(document.getElementById('r_price'));
+  c11.setOption({tooltip:{trigger:'axis'},legend:{data:['Rev占比%','Units占比%','产品数'],top:5},grid:{left:60,right:60,bottom:30,top:50},
+    xAxis:{type:'category',data:["<$50","$50-100","$100-150","$150-200","$200-300","$300-500","$500+"]},
+    yAxis:[{type:'value',name:'占比(%)',splitLine:{lineStyle:{color:'#f0f0f0'}}},
+           {type:'value',name:'产品数',splitLine:{show:false}}],
+    series:[{name:'Rev占比%',type:'bar',data:[0.6,1.2,16.7,44.2,31.8,4.8,0.9],itemStyle:{color:'#3b82f6'}},
+            {name:'Units占比%',type:'bar',data:[2.4,3.3,22.3,45.9,23.3,2.6,0.1],itemStyle:{color:'#f59e0b'}},
+            {name:'产品数',type:'line',yAxisIndex:1,data:[32,24,217,459,361,72,10],itemStyle:{color:'#ef4444'},symbol:'circle',symbolSize:8}]
+  });
+
+  // Rating
+  var c12=echarts.init(document.getElementById('r_rating'));
+  c12.setOption({tooltip:{trigger:'axis'},grid:{left:60,right:20,bottom:30,top:30},
+    xAxis:{type:'category',data:["4.5-5.0","4.0-4.4","3.5-3.9","3.0-3.4","<3.0","No Rating"]},
+    yAxis:{type:'value',splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    series:[{type:'bar',data:[681,398,20,0,4,72],itemStyle:{color:'#3b82f6'},label:{show:true,position:'top'}}]
+  });
+
+  // Launch
+  var c13=echarts.init(document.getElementById('r_launch'));
+  c13.setOption({tooltip:{trigger:'axis'},grid:{left:60,right:20,bottom:30,top:30},
+    xAxis:{type:'category',data:["2017","2018","2019","2020","2021","2022","2023","2024","2025"]},
+    yAxis:{type:'value',splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    series:[{type:'bar',data:[11,20,31,53,64,113,200,381,274],itemStyle:{color:function(p){return p.dataIndex>=7?'#3b82f6':'#94a3b8'}},label:{show:true,position:'top'}}]
+  });
+
+  // QD1: Product Form
+  var c14=echarts.init(document.getElementById('r_qd1'));
+  var qd1Data=[["平面梯",{"count":41,"rev":10454520.22,"units":68788}],["单步梯",{"count":17,"rev":4464221.529999999,"units":22445}],["双步梯-经典款(中间台阶)",{"count":24,"rev":4291899.73,"units":16532}],["侧梯",{"count":9,"rev":2049891.36,"units":10621}],["双步梯(中间台阶+bed access)",{"count":1,"rev":211565.69,"units":757}],["双步梯(bed access台阶)",{"count":1,"rev":152478.61,"units":700}],["双步梯(前面+中间+bed access)",{"count":1,"rev":1195.96,"units":4}]];
+  c14.setOption({tooltip:{trigger:'axis'},legend:{data:['Rev占比%','Units占比%','ASP'],top:5},grid:{left:60,right:60,bottom:100,top:50},
+    xAxis:{type:'category',data:qd1Data.map(function(d){return d[0]}),axisLabel:{rotate:30,fontSize:10}},
+    yAxis:[{type:'value',name:'占比(%)',splitLine:{lineStyle:{color:'#f0f0f0'}}},
+           {type:'value',name:'ASP($)',splitLine:{show:false}}],
+    series:[{name:'Rev占比%',type:'bar',data:qd1Data.map(function(d){return +(d[1].rev/22250985*100).toFixed(1)}),itemStyle:{color:'#3b82f6'}},
+            {name:'Units占比%',type:'bar',data:qd1Data.map(function(d){return +(d[1].units/127716*100).toFixed(1)}),itemStyle:{color:'#f59e0b'}},
+            {name:'ASP',type:'line',yAxisIndex:1,data:qd1Data.map(function(d){return d[1].units?Math.round(d[1].rev/d[1].units):0}),itemStyle:{color:'#ef4444'},symbol:'circle',symbolSize:10}]
+  });
+
+  // QD2: Material
+  var c15=echarts.init(document.getElementById('r_qd2'));
+  var matData=[["Carbon Steel",{"count":60,"rev":13845736.390000002,"units":66868}],["Aluminum",{"count":21,"rev":5281203.5200000005,"units":36441}],["Stainless Steel",{"count":7,"rev":2052533.36,"units":14440}],["ABS Plastic",{"count":3,"rev":521939.27999999997,"units":3485}],["Other",{"count":5,"rev":472009.22,"units":4833}],["Metal/Iron",{"count":3,"rev":77562.89,"units":1649}]];
+  c15.setOption({tooltip:{trigger:'axis'},legend:{data:['销售额','ASP'],top:5},grid:{left:60,right:60,bottom:50,top:50},
+    xAxis:{type:'category',data:matData.map(function(d){return d[0]}),axisLabel:{rotate:20}},
+    yAxis:[{type:'value',name:'销售额($)',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+           {type:'value',name:'ASP($)',splitLine:{show:false}}],
+    series:[{name:'销售额',type:'bar',data:matData.map(function(d){return d[1].rev}),itemStyle:{color:'#3b82f6'}},
+            {name:'ASP',type:'line',yAxisIndex:1,data:matData.map(function(d){return d[1].units?Math.round(d[1].rev/d[1].units):0}),itemStyle:{color:'#ef4444'},symbol:'circle',symbolSize:10}]
+  });
+
+  // QD3: Vehicle
+  var c16=echarts.init(document.getElementById('r_qd3'));
+  var vData=[["Chevy Silverado/GMC Sierra",{"count":26,"rev":9351801.420000002,"units":51057}],["Jeep Wrangler",{"count":14,"rev":3235543.44,"units":15726}],["Dodge Ram",{"count":19,"rev":3186407.6499999994,"units":19168}],["Ford F-Series",{"count":11,"rev":3140893.82,"units":20295}],["Chevy Colorado/GMC Canyon",{"count":7,"rev":1066630.74,"units":5523}],["Jeep Gladiator",{"count":3,"rev":877008.8799999999,"units":4340}],["Toyota Tacoma",{"count":11,"rev":754027.9500000001,"units":3658}],["Other",{"count":5,"rev":625211.56,"units":7869}]];
+  c16.setOption({tooltip:{trigger:'axis'},legend:{data:['销售额','ASP'],top:5},grid:{left:60,right:60,bottom:80,top:50},
+    xAxis:{type:'category',data:vData.map(function(d){return d[0]}),axisLabel:{rotate:30,fontSize:10}},
+    yAxis:[{type:'value',name:'销售额($)',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+           {type:'value',name:'ASP($)',splitLine:{show:false}}],
+    series:[{name:'销售额',type:'bar',data:vData.map(function(d){return d[1].rev}),itemStyle:{color:'#3b82f6'}},
+            {name:'ASP',type:'line',yAxisIndex:1,data:vData.map(function(d){return d[1].units?Math.round(d[1].rev/d[1].units):0}),itemStyle:{color:'#ef4444'},symbol:'circle',symbolSize:10}]
+  });
+
+  // Bubble chart - entry opportunity
+  var c17=echarts.init(document.getElementById('r_bubble'));
+  c17.setOption({
+    tooltip:{trigger:'item',formatter:function(p){return p.data[3]+'<br/>市场规模: $'+(p.data[0]/1e6).toFixed(1)+'M<br/>ASP: $'+p.data[1]+'<br/>竞品数: '+p.data[2]}},
+    grid:{left:60,right:40,bottom:40,top:30},
+    xAxis:{type:'value',name:'市场规模 ($M)',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    yAxis:{type:'value',name:'ASP ($)',min:100,splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    series:[{type:'scatter',symbolSize:function(d){return Math.max(15,60-d[2]/2)},data:[
+      [10454520.22,160,51,'平面梯'],
+      [4291899.73,260,24,'双步梯-经典款(中间台阶)'],
+      [4464221.529999999,195,16,'单步梯'],
+      [365240.26,265,3,'双步梯(bed access系列)']
+    ],label:{show:true,formatter:function(p){return p.data[3]},position:'right',fontSize:11},itemStyle:{color:function(p){var c=['#94a3b8','#22c55e','#f59e0b','#3b82f6'];return c[p.dataIndex]}}}]
+  });
+}
+window.addEventListener('load',function(){setTimeout(initCharts,200)});
+window.addEventListener('resize',function(){
+  document.querySelectorAll('.chart').forEach(function(el){var c=echarts.getInstanceByDom(el);if(c)c.resize();});
+});
+</script>
+</body>
+</html>
