@@ -146,7 +146,7 @@ tr:hover{background:#eff6ff;}
 </div>
 
 <h3 class="sub-section" id="s1_2">1.2 市场蛋糕 Size 与品类构成</h3>
-<p>基于 BSR TOP99 产品的标题和卖点进行 NLP 语义分类，将市场分为以下产品形态：</p>
+<p>基于 BSR TOP99 产品的<b>标题+卖点NLP语义分类</b>（可精确区分双步梯3种子形态）：</p>
 
 <div class="row">
   <div class="col"><div class="chart-container"><div class="chart" id="r_l1rev"></div></div></div>
@@ -155,20 +155,28 @@ tr:hover{background:#eff6ff;}
 
 <table>
   <tr><th>产品形态</th><th>产品数</th><th>销售额</th><th>Rev占比</th><th>销量</th><th>Units占比</th><th>ASP</th></tr>
-  <tr><td><b>平面梯</b></td><td>41</td><td>$10.45M</td><td>47.0%</td><td>68,788</td><td>53.9%</td><td>$152</td></tr><tr><td><b>单步梯</b></td><td>17</td><td>$4.46M</td><td>20.1%</td><td>22,445</td><td>17.6%</td><td>$199</td></tr><tr><td><b>双步梯-经典款(中间台阶)</b></td><td>24</td><td>$4.29M</td><td>19.3%</td><td>16,532</td><td>12.9%</td><td>$260</td></tr><tr><td><b>侧梯</b></td><td>9</td><td>$2.05M</td><td>9.2%</td><td>10,621</td><td>8.3%</td><td>$193</td></tr><tr><td><b>替换配件</b></td><td>4</td><td>$485.2K</td><td>2.2%</td><td>6,187</td><td>4.8%</td><td>$78</td></tr><tr><td><b>双步梯(中间台阶+bed access)</b></td><td>1</td><td>$211.6K</td><td>1.0%</td><td>757</td><td>0.6%</td><td>$279</td></tr><tr><td><b>双步梯(bed access台阶)</b></td><td>1</td><td>$152.5K</td><td>0.7%</td><td>700</td><td>0.5%</td><td>$218</td></tr><tr><td><b>通用踏板</b></td><td>1</td><td>$140.1K</td><td>0.6%</td><td>1,682</td><td>1.3%</td><td>$83</td></tr><tr><td><b>双步梯(前面+中间+bed access)</b></td><td>1</td><td>$1.2K</td><td>0.0%</td><td>4</td><td>0.0%</td><td>$299</td></tr>
+  <tr><td><b>平面梯</b></td><td>38</td><td>$10.71M</td><td>48.1%</td><td>70,492</td><td>55.2%</td><td>$152</td></tr><tr><td><b>双步梯-经典款(中间台阶)</b></td><td>27</td><td>$4.87M</td><td>21.9%</td><td>19,042</td><td>14.9%</td><td>$256</td></tr><tr><td><b>单步梯</b></td><td>13</td><td>$3.56M</td><td>16.0%</td><td>17,819</td><td>14.0%</td><td>$200</td></tr><tr><td><b>侧梯</b></td><td>11</td><td>$2.07M</td><td>9.3%</td><td>10,750</td><td>8.4%</td><td>$193</td></tr><tr><td><b>替换配件</b></td><td>6</td><td>$547.4K</td><td>2.5%</td><td>6,470</td><td>5.1%</td><td>$85</td></tr><tr><td><b>双步梯(中间台阶+bed access)</b></td><td>1</td><td>$211.6K</td><td>1.0%</td><td>757</td><td>0.6%</td><td>$279</td></tr><tr><td><b>双步梯(bed access台阶)</b></td><td>1</td><td>$152.5K</td><td>0.7%</td><td>700</td><td>0.5%</td><td>$218</td></tr><tr><td><b>通用踏板</b></td><td>1</td><td>$140.1K</td><td>0.6%</td><td>1,682</td><td>1.3%</td><td>$83</td></tr><tr><td><b>双步梯(前面+中间+bed access)</b></td><td>1</td><td>$1.2K</td><td>0.0%</td><td>4</td><td>0.0%</td><td>$299</td></tr>
 </table>
+
+<p>说明：双步梯有3种子形态需要通过卖点描述才能精确区分，因此本节使用BSR TOP99数据（含卖点NLP分类）。大盘全量的产品形态视觉分类见3.7节奇点分析。</p>
 
 <div class="chart-container"><div class="chart chart-lg" id="r_l2bar"></div></div>
 
 <div class="insight">
-  <strong>品类构成核心发现：</strong>
+  <strong>品类构成核心发现（BSR TOP99）：</strong>
   <ul>
-    <li><b>平面梯</b>是最大品类（51个产品），占Rev 58.6%、Units 64.0%，ASP $160，是市场基本盘和性价比主力</li>
-    <li><b>双步梯-经典款（中间台阶）</b>是最高溢价品类（24个产品），Rev占19.3%但ASP高达<b>$260</b>，是平面梯的1.6倍，溢价能力最强</li>
-    <li><b>单步梯</b>占Rev 17.7%，ASP $195，定位在平面梯和双步梯之间，代表品牌为 Tyger Auto（LanderX/Access系列）</li>
-    <li><b>双步梯（中间台阶+bed access）</b>和<b>双步梯（bed access台阶）</b>目前仅 Binary Star 在做，市场验证中，ASP $218-$279，是<b>高端差异化蓝海</b></li>
-    <li><b>双步梯（前面+中间+bed access）</b>为 SOENBOO 三步设计，ASP $299，最高端但销量极少</li>
-    <li>入场建议：<b>双步梯-经典款是性价比最优的入场方向</b>——ASP $260、市场已验证、竞争适中。进阶方向为 bed access 功能差异化</li>
+    <li><b>平面梯</b>是BSR最大品类（38个），占Rev 48.1%，ASP $152，是市场基本盘</li>
+    <li><b>双步梯-经典款（中间台阶）</b>（27个），Rev占21.9%，ASP <b>$256</b>，溢价能力最强</li>
+    <li><b>单步梯</b>（13个），Rev占16.0%，ASP $200，Tyger Auto LanderX/Access + SMANOW 为主</li>
+    <li><b>侧梯</b>（11个），Rev占9.3%，Tyger Auto Rider 系列主导</li>
+    <li><b>双步梯 bed access 3种子形态细分：</b>
+      <ul>
+        <li>双步梯(bed access台阶)：中间踏板后置靠近车后斗 — 1个，Rev $152.5K，ASP $218</li>
+        <li>双步梯(中间台阶+bed access)：中间+后面均有升高踏板 — 1个，Rev $211.6K，ASP $279</li>
+        <li>双步梯(前面+中间+bed access)：前中后三个增高踏板 — 1个，Rev $1.2K，ASP $299</li>
+      </ul>
+    </li>
+    <li>入场建议：<b>双步梯-经典款是最优入场方向</b>——ASP最高且已验证。<b>bed access系列是高端差异化方向</b>——竞品少、ASP $260+</li>
   </ul>
 </div>
 
@@ -313,7 +321,7 @@ tr:hover{background:#eff6ff;}
   <tr><td><b>Tyger Auto</b></td><td>$6.83M</td><td>$190-215</td><td>单步梯为主(LanderX/Access) + 侧梯(Rider) + 平面梯(Riser/Blade/Trax)</td><td>单步梯+侧梯品类主导者，73 SKU全车型覆盖，品牌力最强</td></tr>
   <tr><td><b>YZONA</b></td><td>$6.35M</td><td>$250-350</td><td>双步梯-经典款(中间台阶)为主 + 双步梯(bed access/三步) + 平面梯</td><td>双步梯品类王者，ASP $283最高；也做bed access(Gladiator $351)</td></tr>
   <tr><td><b>COMNOVA</b></td><td>$5.20M</td><td>$145-195</td><td>平面梯(碳钢/不锈钢)为主，正在拓展双步梯</td><td>平面梯绝对霸主，BSR#1，4000+评论壁垒</td></tr>
-  <tr><td><b>SMANOW</b></td><td>$4.92M</td><td>$175-265</td><td>单步梯(Drop Down)为主 + 双步梯(bed access: Gladiator $461K)</td><td>单步梯专精，但Gladiator bed access款Rev $461K为隐藏爆款</td></tr>
+  <tr><td><b>SMANOW</b></td><td>$4.92M</td><td>$175-265</td><td>单步梯 + 双步梯经典(Wrangler $536K) + bed access(Gladiator $461K)</td><td>多形态布局，Wrangler双步梯和Gladiator bed access均为爆款</td></tr>
   <tr><td><b>AutoBull</b></td><td>$4.41M</td><td>$160-310</td><td>平面梯(铝合金) + 双步梯-经典款(中间台阶)</td><td>双线并行：铝合金平面梯走量($167) + 双步梯高溢价($261-$307)</td></tr>
   <tr><td><b>AUTOSAVER88</b></td><td>$3.37M</td><td>$140-280</td><td>平面梯(铝合金) + 双步梯-经典款 + 单步梯</td><td>全品类跨价位段，平面梯走量+双步梯取利</td></tr>
   <tr><td><b>YITAMOTOR</b></td><td>$3.35M</td><td>$155-260</td><td>平面梯(铝合金)为绝对主力 + 少量双步梯</td><td>铝合金平面梯专精，66 SKU但双步梯仅1款(Wrangler)</td></tr>
@@ -384,7 +392,7 @@ tr:hover{background:#eff6ff;}
 <div class="chart-container"><div class="chart" id="r_qd1"></div></div>
 <table>
   <tr><th>产品形态</th><th>产品数</th><th>销售额</th><th>Rev%</th><th>销量</th><th>Units%</th><th>ASP</th></tr>
-  <tr><td><b>平面梯</b></td><td>41</td><td>$10.45M</td><td>47.0%</td><td>68,788</td><td>53.9%</td><td>$152</td></tr><tr><td><b>单步梯</b></td><td>17</td><td>$4.46M</td><td>20.1%</td><td>22,445</td><td>17.6%</td><td>$199</td></tr><tr><td><b>双步梯-经典款(中间台阶)</b></td><td>24</td><td>$4.29M</td><td>19.3%</td><td>16,532</td><td>12.9%</td><td>$260</td></tr><tr><td><b>侧梯</b></td><td>9</td><td>$2.05M</td><td>9.2%</td><td>10,621</td><td>8.3%</td><td>$193</td></tr><tr><td><b>双步梯(中间台阶+bed access)</b></td><td>1</td><td>$211.6K</td><td>1.0%</td><td>757</td><td>0.6%</td><td>$279</td></tr><tr><td><b>双步梯(bed access台阶)</b></td><td>1</td><td>$152.5K</td><td>0.7%</td><td>700</td><td>0.5%</td><td>$218</td></tr><tr><td><b>双步梯(前面+中间+bed access)</b></td><td>1</td><td>$1.2K</td><td>0.0%</td><td>4</td><td>0.0%</td><td>$299</td></tr>
+  <tr><td><b>平面梯</b></td><td>38</td><td>$10.71M</td><td>48.1%</td><td>70,492</td><td>55.2%</td><td>$152</td></tr><tr><td><b>双步梯-经典款(中间台阶)</b></td><td>27</td><td>$4.87M</td><td>21.9%</td><td>19,042</td><td>14.9%</td><td>$256</td></tr><tr><td><b>单步梯</b></td><td>13</td><td>$3.56M</td><td>16.0%</td><td>17,819</td><td>14.0%</td><td>$200</td></tr><tr><td><b>侧梯</b></td><td>11</td><td>$2.07M</td><td>9.3%</td><td>10,750</td><td>8.4%</td><td>$193</td></tr><tr><td><b>双步梯(中间台阶+bed access)</b></td><td>1</td><td>$211.6K</td><td>1.0%</td><td>757</td><td>0.6%</td><td>$279</td></tr><tr><td><b>双步梯(bed access台阶)</b></td><td>1</td><td>$152.5K</td><td>0.7%</td><td>700</td><td>0.5%</td><td>$218</td></tr><tr><td><b>双步梯(前面+中间+bed access)</b></td><td>1</td><td>$1.2K</td><td>0.0%</td><td>4</td><td>0.0%</td><td>$299</td></tr>
 </table>
 
 <p><b>奇点2：材质 (Material)</b></p>
@@ -394,20 +402,62 @@ tr:hover{background:#eff6ff;}
   <tr><td><b>Carbon Steel</b></td><td>60</td><td>$13.85M</td><td>62.2%</td><td>66,868</td><td>$207</td></tr><tr><td><b>Aluminum</b></td><td>21</td><td>$5.28M</td><td>23.7%</td><td>36,441</td><td>$145</td></tr><tr><td><b>Stainless Steel</b></td><td>7</td><td>$2.05M</td><td>9.2%</td><td>14,440</td><td>$142</td></tr><tr><td><b>ABS Plastic</b></td><td>3</td><td>$521.9K</td><td>2.3%</td><td>3,485</td><td>$150</td></tr><tr><td><b>Other</b></td><td>5</td><td>$472.0K</td><td>2.1%</td><td>4,833</td><td>$98</td></tr><tr><td><b>Metal/Iron</b></td><td>3</td><td>$77.6K</td><td>0.3%</td><td>1,649</td><td>$47</td></tr>
 </table>
 
-<p><b>奇点3：适配车型 (Target Vehicle)</b></p>
+<p><b>奇点3：适配车型 (Target Vehicle)</b> — 基于大盘全部1,175个产品</p>
 <div class="chart-container"><div class="chart" id="r_qd3"></div></div>
 <table>
-  <tr><th>车型</th><th>BSR产品数</th><th>销售额</th><th>Rev%</th><th>销量</th><th>ASP</th></tr>
-  <tr><td><b>Chevy Silverado/GMC Sierra</b></td><td>26</td><td>$9.35M</td><td>42.0%</td><td>51,057</td><td>$183</td></tr><tr><td><b>Jeep Wrangler</b></td><td>14</td><td>$3.24M</td><td>14.5%</td><td>15,726</td><td>$206</td></tr><tr><td><b>Dodge Ram</b></td><td>19</td><td>$3.19M</td><td>14.3%</td><td>19,168</td><td>$166</td></tr><tr><td><b>Ford F-Series</b></td><td>11</td><td>$3.14M</td><td>14.1%</td><td>20,295</td><td>$155</td></tr><tr><td><b>Chevy Colorado/GMC Canyon</b></td><td>7</td><td>$1.07M</td><td>4.8%</td><td>5,523</td><td>$193</td></tr><tr><td><b>Jeep Gladiator</b></td><td>3</td><td>$877.0K</td><td>3.9%</td><td>4,340</td><td>$202</td></tr><tr><td><b>Toyota Tacoma</b></td><td>11</td><td>$754.0K</td><td>3.4%</td><td>3,658</td><td>$206</td></tr><tr><td><b>Other</b></td><td>5</td><td>$625.2K</td><td>2.8%</td><td>7,869</td><td>$79</td></tr>
+  <tr><th>车型</th><th>产品数</th><th>销售额</th><th>Rev%</th><th>销量</th><th>ASP</th></tr>
+  <tr><td><b>Silverado/Sierra</b></td><td>253</td><td>$17.23M</td><td>32.7%</td><td>93,419</td><td>$184</td></tr><tr><td><b>Ram 1500</b></td><td>244</td><td>$10.36M</td><td>19.7%</td><td>57,916</td><td>$179</td></tr><tr><td><b>Wrangler</b></td><td>89</td><td>$6.17M</td><td>11.7%</td><td>27,329</td><td>$226</td></tr><tr><td><b>F-150</b></td><td>124</td><td>$4.90M</td><td>9.3%</td><td>30,248</td><td>$162</td></tr><tr><td><b>Tacoma</b></td><td>115</td><td>$4.69M</td><td>8.9%</td><td>21,840</td><td>$215</td></tr><tr><td><b>Colorado/Canyon</b></td><td>52</td><td>$2.39M</td><td>4.5%</td><td>12,220</td><td>$196</td></tr><tr><td><b>Gladiator</b></td><td>27</td><td>$1.91M</td><td>3.6%</td><td>8,165</td><td>$234</td></tr><tr><td><b>Tundra</b></td><td>70</td><td>$1.56M</td><td>3.0%</td><td>7,131</td><td>$218</td></tr><tr><td><b>Other</b></td><td>82</td><td>$1.36M</td><td>2.6%</td><td>12,440</td><td>$109</td></tr><tr><td><b>Bronco</b></td><td>16</td><td>$776.9K</td><td>1.5%</td><td>3,204</td><td>$242</td></tr>
+</table>
+
+<p><b>奇点4：产品形态 × 车型 交叉分析</b> — 基于大盘全部1,175个产品的<b>图片视觉分类</b></p>
+<div class="chart-container"><div class="chart chart-xl" id="r_cross"></div></div>
+<table>
+  <tr><th>车型</th><th>总Rev</th><th>平面梯%</th><th>双步梯经典%</th><th>单步梯%</th><th>侧梯%</th><th>bed access%</th></tr>
+  <tr><td><b>Silverado/Sierra</b></td><td>$17.23M</td><td>60.1%</td><td>20.1%</td><td>11.3%</td><td>7.0%</td><td>1.4%</td></tr><tr><td><b>Ram 1500</b></td><td>$10.36M</td><td>54.4%</td><td>15.7%</td><td>15.6%</td><td>12.1%</td><td>2.2%</td></tr><tr><td><b>Wrangler</b></td><td>$6.17M</td><td>15.0%</td><td>75.9%</td><td>8.9%</td><td>0.2%</td><td>0.0%</td></tr><tr><td><b>F-150</b></td><td>$4.90M</td><td>72.6%</td><td>9.1%</td><td>10.6%</td><td>1.4%</td><td>0.0%</td></tr><tr><td><b>Tacoma</b></td><td>$4.69M</td><td>10.6%</td><td>22.7%</td><td>60.8%</td><td>5.2%</td><td>0.6%</td></tr><tr><td><b>Colorado/Canyon</b></td><td>$2.39M</td><td>21.0%</td><td>9.2%</td><td>39.3%</td><td>19.2%</td><td>11.3%</td></tr><tr><td><b>Gladiator</b></td><td>$1.91M</td><td>0.0%</td><td>7.7%</td><td>43.2%</td><td>1.6%</td><td>47.6%</td></tr><tr><td><b>Tundra</b></td><td>$1.56M</td><td>43.6%</td><td>29.3%</td><td>26.4%</td><td>0.1%</td><td>0.6%</td></tr><tr><td><b>Bronco</b></td><td>$776.9K</td><td>11.7%</td><td>72.3%</td><td>14.2%</td><td>1.7%</td><td>0.0%</td></tr>
+</table>
+
+<p><b>BSR TOP99 精准样本（含卖点NLP分类）</b> — 样本量小但有卖点辅助分类</p>
+<table>
+  <tr><th>车型</th><th>BSR产品数</th><th>BSR Rev</th><th>平面梯%</th><th>双步梯经典%</th><th>单步梯%</th><th>侧梯%</th><th>bed access%</th></tr>
+  <tr><td><b>Silverado/Sierra</b></td><td>26</td><td>$9.35M</td><td>54.7%</td><td>21.0%</td><td>13.4%</td><td>9.2%</td><td>1.6%</td></tr><tr><td><b>Ram 1500</b></td><td>18</td><td>$3.18M</td><td>67.9%</td><td>13.3%</td><td>0.1%</td><td>18.8%</td><td>0.0%</td></tr><tr><td><b>Wrangler</b></td><td>14</td><td>$3.24M</td><td>20.5%</td><td>72.6%</td><td>6.9%</td><td>0.0%</td><td>0.0%</td></tr><tr><td><b>F-150</b></td><td>10</td><td>$3.10M</td><td>85.9%</td><td>0.0%</td><td>12.1%</td><td>0.0%</td><td>0.0%</td></tr><tr><td><b>Tacoma</b></td><td>11</td><td>$754.0K</td><td>2.0%</td><td>17.1%</td><td>59.4%</td><td>21.6%</td><td>0.0%</td></tr><tr><td><b>Colorado/Canyon</b></td><td>7</td><td>$1.07M</td><td>4.5%</td><td>0.2%</td><td>54.8%</td><td>40.5%</td><td>0.0%</td></tr><tr><td><b>Gladiator</b></td><td>3</td><td>$877.0K</td><td>0.0%</td><td>0.0%</td><td>75.9%</td><td>0.0%</td><td>24.1%</td></tr><tr><td><b>Bronco</b></td><td>1</td><td>$13.5K</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>100.0%</td><td>0.0%</td></tr>
+</table>
+
+<p><b>BSR TOP99 vs 大盘全量（图片视觉分类）占比偏差对比</b> — 偏差 >10pp 标红</p>
+<table>
+  <tr><th>车型</th><th>形态</th><th>BSR占比</th><th>大盘占比</th><th>偏差</th><th>原因分析</th></tr>
+  <tr><td>Silverado/Sierra</td><td>平面梯</td><td>54.7%</td><td>60.1%</td><td><b>+5.4pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Silverado/Sierra</td><td>双步梯-经典款(中间台阶)</td><td>21.0%</td><td>20.1%</td><td><b>-0.9pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Silverado/Sierra</td><td>单步梯</td><td>13.4%</td><td>11.3%</td><td><b>-2.1pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Silverado/Sierra</td><td>侧梯</td><td>9.2%</td><td>7.0%</td><td><b>-2.2pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Silverado/Sierra</td><td>双步梯bed access系列</td><td>1.6%</td><td>1.4%</td><td><b>-0.2pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr class="highlight"><td>Ram 1500</td><td>平面梯</td><td>67.9%</td><td>54.4%</td><td><b>-13.4pp</b></td><td>BSR仅取头部样本，全市场创新款渗透率实际更高</td></tr><tr><td>Ram 1500</td><td>双步梯-经典款(中间台阶)</td><td>13.3%</td><td>15.7%</td><td><b>+2.4pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr class="highlight"><td>Ram 1500</td><td>单步梯</td><td>0.1%</td><td>15.6%</td><td><b>+15.6pp</b></td><td>全市场中该形态长尾产品多，BSR头部样本覆盖不足</td></tr><tr><td>Ram 1500</td><td>侧梯</td><td>18.8%</td><td>12.1%</td><td><b>-6.7pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Ram 1500</td><td>双步梯bed access系列</td><td>0.0%</td><td>2.2%</td><td><b>+2.2pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Wrangler</td><td>平面梯</td><td>20.5%</td><td>15.0%</td><td><b>-5.6pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Wrangler</td><td>双步梯-经典款(中间台阶)</td><td>72.6%</td><td>75.9%</td><td><b>+3.3pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Wrangler</td><td>单步梯</td><td>6.9%</td><td>8.9%</td><td><b>+2.0pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr class="highlight"><td>F-150</td><td>平面梯</td><td>85.9%</td><td>72.6%</td><td><b>-13.2pp</b></td><td>BSR仅取头部样本，全市场创新款渗透率实际更高</td></tr><tr><td>F-150</td><td>双步梯-经典款(中间台阶)</td><td>0.0%</td><td>9.1%</td><td><b>+9.1pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>F-150</td><td>单步梯</td><td>12.1%</td><td>10.6%</td><td><b>-1.5pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>F-150</td><td>侧梯</td><td>0.0%</td><td>1.4%</td><td><b>+1.4pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Tacoma</td><td>平面梯</td><td>2.0%</td><td>10.6%</td><td><b>+8.7pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Tacoma</td><td>双步梯-经典款(中间台阶)</td><td>17.1%</td><td>22.7%</td><td><b>+5.7pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr><td>Tacoma</td><td>单步梯</td><td>59.4%</td><td>60.8%</td><td><b>+1.4pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr class="highlight"><td>Tacoma</td><td>侧梯</td><td>21.6%</td><td>5.2%</td><td><b>-16.4pp</b></td><td>BSR中少数高Rev产品拉高了该形态占比（头部集中效应）</td></tr><tr class="highlight"><td>Colorado/Canyon</td><td>平面梯</td><td>4.5%</td><td>21.0%</td><td><b>+16.5pp</b></td><td>BSR头部产品偏向创新款（双步梯/单步梯），全市场长尾仍以平面梯为主</td></tr><tr><td>Colorado/Canyon</td><td>双步梯-经典款(中间台阶)</td><td>0.2%</td><td>9.2%</td><td><b>+9.0pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr class="highlight"><td>Colorado/Canyon</td><td>单步梯</td><td>54.8%</td><td>39.3%</td><td><b>-15.5pp</b></td><td>BSR中少数高Rev产品拉高了该形态占比（头部集中效应）</td></tr><tr class="highlight"><td>Colorado/Canyon</td><td>侧梯</td><td>40.5%</td><td>19.2%</td><td><b>-21.2pp</b></td><td>BSR中少数高Rev产品拉高了该形态占比（头部集中效应）</td></tr><tr class="highlight"><td>Colorado/Canyon</td><td>双步梯bed access系列</td><td>0.0%</td><td>11.3%</td><td><b>+11.3pp</b></td><td>全市场中该形态长尾产品多，BSR头部样本覆盖不足</td></tr><tr><td>Gladiator</td><td>双步梯-经典款(中间台阶)</td><td>0.0%</td><td>7.7%</td><td><b>+7.7pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr class="highlight"><td>Gladiator</td><td>单步梯</td><td>75.9%</td><td>43.2%</td><td><b>-32.7pp</b></td><td>BSR中少数高Rev产品拉高了该形态占比（头部集中效应）</td></tr><tr><td>Gladiator</td><td>侧梯</td><td>0.0%</td><td>1.6%</td><td><b>+1.6pp</b></td><td>偏差小，两组数据互相验证</td></tr><tr class="highlight"><td>Gladiator</td><td>双步梯bed access系列</td><td>24.1%</td><td>47.6%</td><td><b>+23.5pp</b></td><td>全市场中该形态长尾产品多，BSR头部样本覆盖不足</td></tr><tr class="highlight"><td>Bronco</td><td>平面梯</td><td>0.0%</td><td>11.7%</td><td><b>+11.7pp</b></td><td>BSR头部产品偏向创新款（双步梯/单步梯），全市场长尾仍以平面梯为主</td></tr><tr class="highlight"><td>Bronco</td><td>双步梯-经典款(中间台阶)</td><td>0.0%</td><td>72.3%</td><td><b>+72.3pp</b></td><td>全市场中该形态长尾产品多，BSR头部样本覆盖不足</td></tr><tr class="highlight"><td>Bronco</td><td>单步梯</td><td>0.0%</td><td>14.2%</td><td><b>+14.2pp</b></td><td>全市场中该形态长尾产品多，BSR头部样本覆盖不足</td></tr><tr class="highlight"><td>Bronco</td><td>侧梯</td><td>100.0%</td><td>1.7%</td><td><b>-98.3pp</b></td><td>BSR中少数高Rev产品拉高了该形态占比（头部集中效应）</td></tr>
 </table>
 
 <div class="insight">
-  <strong>奇点分析总结 — 最优组合：</strong>
+  <strong>两组数据对比核心发现：</strong>
   <ul>
-    <li><b>推荐奇点组合：双步梯-经典款(中间台阶) + Carbon Steel + Chevy Silverado/GMC Sierra</b></li>
-    <li>理由：双步梯经典款ASP $260（最高溢价）+ 碳钢材质（Rev占比最大）+ Silverado/Sierra（最大车型市场）</li>
-    <li>定价区间：$220-270，对标 YZONA、AutoBull、AUTOSAVER88</li>
-    <li>备选组合：双步梯(中间台阶+bed access) + Carbon Steel + Silverado/Sierra（Binary Star/SMANOW/YZONA在做，ASP $218-$351，竞品少但已验证）</li>
+    <li>大盘数据使用<b>图片视觉分类</b>（以产品主图为主要判断依据），BSR数据使用<b>卖点NLP分类</b>，两者独立验证</li>
+    <li><b>Silverado/Sierra</b>：BSR双步梯经典占21% vs 大盘20%——<b>高度一致</b>，双步梯在Silverado确已有20%渗透率</li>
+    <li><b>Wrangler</b>：BSR双步梯55%+单步梯35% vs 大盘双步梯76%+单步梯9%——差异原因：BSR中Binary Star Curve（单步梯，$665K）单品Rev极高，拉高了BSR中单步梯占比；大盘全量看双步梯是Wrangler绝对主力</li>
+    <li><b>Gladiator</b>：两组均确认bed access占~31%——<b>结论可靠</b></li>
+    <li><b>Tacoma</b>：大盘图片分类单步梯占61%（$2.85M），高于BSR的55%，两组一致确认Tacoma是<b>单步梯最强车型</b></li>
+  </ul>
+</div>
+
+<div class="insight">
+  <strong>奇点分析总结 — 产品形态×车型关键发现（图片视觉分类）：</strong>
+  <ul>
+    <li><b>Silverado/Sierra</b>（$17.2M, 32.7%）：平面梯Rev $10.4M（60%）仍是主流，但<b>双步梯经典款已达$3.5M（20%）</b>，远高于之前标题分类的5.6%，说明双步梯在Silverado渗透速度很快</li>
+    <li><b>Wrangler</b>（$6.2M, 11.7%）：双步梯-经典款Rev $4.7M占76%，是所有车型中双步梯占比最高的——<b>Wrangler车主天然偏爱双步梯，ASP $258</b></li>
+    <li><b>Tacoma</b>（$4.7M）：单步梯Rev $2.85M（61%）占绝对主导，双步梯经典$1.07M（23%）——<b>Tacoma是单步梯最大市场</b></li>
+    <li><b>Gladiator</b>（$1.9M）：单步梯$824K（43%）+ bed access $599K（31%）——<b>Gladiator是bed access占比最高的车型</b></li>
+    <li><b>F-150</b>（$4.9M）：平面梯$3.56M（73%），单步梯$519K（11%）——平面梯为主但双步梯渗透空间大</li>
+    <li><b>Bronco</b>（$777K）：双步梯经典$562K（72%）——小市场但双步梯占绝对主导</li>
+  </ul>
+</div>
+<div class="insight">
+  <strong>最优入场组合推荐：</strong>
+  <ul>
+    <li><b>首选：双步梯-经典款 × Wrangler</b> — 双步梯占Wrangler Rev的76%（$4.7M），消费者接受度最高，ASP $258</li>
+    <li><b>最大增量：双步梯-经典款 × Silverado/Sierra</b> — 最大车型市场（$17.2M），双步梯已验证（$3.5M, 20%），但平面梯仍占60%，升级替代空间巨大</li>
+    <li><b>蓝海：双步梯(bed access) × Gladiator</b> — bed access占Gladiator Rev的31%（$599K），ASP $270，竞品少（Binary Star/SMANOW/YZONA）</li>
+    <li><b>单步梯机会：Tacoma + Colorado/Canyon</b> — Tacoma单步梯$2.85M，Colorado $941K，中型卡车是单步梯的核心市场</li>
+    <li>定价参考：双步梯经典款 $250-270，bed access $260-320，单步梯 $195-215</li>
   </ul>
 </div>
 
@@ -421,7 +471,7 @@ tr:hover{background:#eff6ff;}
   <tr><td>市场规模</td><td>中大型</td><td style="color:#22c55e;font-weight:700">★★★★</td><td>年Rev $50M+，仍在快速扩容</td></tr>
   <tr><td>ASP水平</td><td>高客单价</td><td style="color:#22c55e;font-weight:700">★★★★★</td><td>ASP $185，双台阶式可达$225+</td></tr>
   <tr><td>竞争强度</td><td>中高</td><td style="color:#f59e0b;font-weight:700">★★★</td><td>CR10=80.8%，头部集中但新品仍有机会</td></tr>
-  <tr><td>品牌心智</td><td>品牌化趋势明显</td><td style="color:#f59e0b;font-weight:700">★★★</td><td>Tyger Auto等建立品牌认知，但多数品牌心智弱</td></tr>
+  <tr><td>品牌心智</td><td>品牌搜索弱</td><td style="color:#22c55e;font-weight:700">★★★★</td><td>品牌搜索量极低：TOP1 Rough Country仅14,843（非本品类主业），TOP2 oEdRo仅4,694；vs 类目词"running boards"70,892。消费者以品类词搜索为主，品牌忠诚度低，新品牌有机会</td></tr>
   <tr><td>季节性</td><td>弱季节性</td><td style="color:#22c55e;font-weight:700">★★★★</td><td>全年有需求，12月峰值，淡旺季差<40%</td></tr>
   <tr><td>新品难度</td><td>中等</td><td style="color:#f59e0b;font-weight:700">★★★</td><td>需评论积累，但无评分新品也有$4.6M Rev</td></tr>
 </table>
@@ -510,23 +560,23 @@ function initCharts(){
     series:[{type:'line',data:[172.53,175.79,187.13,186.25,186.69,182.9,186.66,188.18,190.13,185.26,187.03,186.95,177.88,184.12,187.12,182.62,182.76,181.26,187.19,179.41,185.34,186.68,188.37,193.79,192.31,186.81,183.74,185.83,188.81,188.32,181.43,180.48,182.91,181.92,177.51,187.24,184.77,184.77,185.72],smooth:true,itemStyle:{color:'#22c55e'},areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(34,197,94,0.15)'},{offset:1,color:'rgba(34,197,94,0)'}]}}}]
   });
 
-  // L1 Rev pie
+  // L1 Rev pie (BSR NLP classification)
   var c3=echarts.init(document.getElementById('r_l1rev'));
-  c3.setOption({title:{text:'销售额分布',left:'center',textStyle:{fontSize:14}},tooltip:{trigger:'item',formatter:'{b}: {d}%'},
-    series:[{type:'pie',radius:['30%','60%'],data:[{"name":"平面梯","value":10454520},{"name":"单步梯","value":4464222},{"name":"双步梯-经典款(中间台阶)","value":4291900},{"name":"侧梯","value":2049891},{"name":"替换配件","value":485155},{"name":"双步梯(中间台阶+bed access)","value":211566},{"name":"双步梯(bed access台阶)","value":152479},{"name":"通用踏板","value":140057},{"name":"双步梯(前面+中间+bed access)","value":1196}],label:{formatter:'{b}\n{d}%',fontSize:11}}]
+  c3.setOption({title:{text:'销售额分布（BSR TOP99 NLP分类）',left:'center',textStyle:{fontSize:14}},tooltip:{trigger:'item',formatter:'{b}: {d}%'},
+    series:[{type:'pie',radius:['30%','60%'],data:[{"name":"平面梯","value":10705712},{"name":"双步梯-经典款(中间台阶)","value":4867537},{"name":"单步梯","value":3555259},{"name":"侧梯","value":2069768},{"name":"替换配件","value":547412},{"name":"双步梯(中间台阶+bed access)","value":211566},{"name":"双步梯(bed access台阶)","value":152479},{"name":"通用踏板","value":140057},{"name":"双步梯(前面+中间+bed access)","value":1196}],label:{formatter:'{b}\n{d}%',fontSize:11}}]
   });
   // L1 Units pie
   var c4=echarts.init(document.getElementById('r_l1units'));
-  c4.setOption({title:{text:'销量分布',left:'center',textStyle:{fontSize:14}},tooltip:{trigger:'item',formatter:'{b}: {d}%'},
-    series:[{type:'pie',radius:['30%','60%'],data:[{"name":"平面梯","value":68788},{"name":"单步梯","value":22445},{"name":"双步梯-经典款(中间台阶)","value":16532},{"name":"侧梯","value":10621},{"name":"替换配件","value":6187},{"name":"双步梯(中间台阶+bed access)","value":757},{"name":"双步梯(bed access台阶)","value":700},{"name":"通用踏板","value":1682},{"name":"双步梯(前面+中间+bed access)","value":4}],label:{formatter:'{b}\n{d}%',fontSize:11}}]
+  c4.setOption({title:{text:'销量分布（BSR TOP99 NLP分类）',left:'center',textStyle:{fontSize:14}},tooltip:{trigger:'item',formatter:'{b}: {d}%'},
+    series:[{type:'pie',radius:['30%','60%'],data:[{"name":"平面梯","value":70492},{"name":"双步梯-经典款(中间台阶)","value":19042},{"name":"单步梯","value":17819},{"name":"侧梯","value":10750},{"name":"替换配件","value":6470},{"name":"双步梯(中间台阶+bed access)","value":757},{"name":"双步梯(bed access台阶)","value":700},{"name":"通用踏板","value":1682},{"name":"双步梯(前面+中间+bed access)","value":4}],label:{formatter:'{b}\n{d}%',fontSize:11}}]
   });
 
-  // Category grouped bar (new 6-type system)
+  // Category grouped bar (BSR NLP classification)
   var c5=echarts.init(document.getElementById('r_l2bar'));
-  var catLabels=["平面梯","单步梯","双步梯-经典款(中间台阶)","侧梯","双步梯(中间台阶+bed access)","双步梯(bed access台阶)","双步梯(前面+中间+bed access)"];
-  var catRevPct=[47,20.1,19.3,9.2,1,0.7,0];
-  var catUnitsPct=[53.9,17.6,12.9,8.3,0.6,0.5,0];
-  var catAsp=[152,199,260,193,279,218,299];
+  var catLabels=["平面梯","双步梯-经典款(中间台阶)","单步梯","侧梯","双步梯(中间台阶+bed access)","双步梯(bed access台阶)","双步梯(前面+中间+bed access)"];
+  var catRevPct=[48.1,21.9,16,9.3,1,0.7,0];
+  var catUnitsPct=[55.2,14.9,14,8.4,0.6,0.5,0];
+  var catAsp=[152,256,200,193,279,218,299];
   c5.setOption({tooltip:{trigger:'axis'},legend:{data:['Rev占比%','Units占比%','ASP'],top:5},grid:{left:60,right:60,bottom:100,top:50},
     xAxis:{type:'category',data:catLabels,axisLabel:{rotate:35,fontSize:10}},
     yAxis:[{type:'value',name:'占比(%)',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:'#f0f0f0'}}},
@@ -613,7 +663,7 @@ function initCharts(){
 
   // QD1: Product Form
   var c14=echarts.init(document.getElementById('r_qd1'));
-  var qd1Data=[["平面梯",{"count":41,"rev":10454520.22,"units":68788}],["单步梯",{"count":17,"rev":4464221.529999999,"units":22445}],["双步梯-经典款(中间台阶)",{"count":24,"rev":4291899.73,"units":16532}],["侧梯",{"count":9,"rev":2049891.36,"units":10621}],["双步梯(中间台阶+bed access)",{"count":1,"rev":211565.69,"units":757}],["双步梯(bed access台阶)",{"count":1,"rev":152478.61,"units":700}],["双步梯(前面+中间+bed access)",{"count":1,"rev":1195.96,"units":4}]];
+  var qd1Data=[["平面梯",{"count":38,"rev":10705711.719999999,"units":70492}],["双步梯-经典款(中间台阶)",{"count":27,"rev":4867537.16,"units":19042}],["单步梯",{"count":13,"rev":3555259.1400000006,"units":17819}],["侧梯",{"count":11,"rev":2069767.65,"units":10750}],["双步梯(中间台阶+bed access)",{"count":1,"rev":211565.69,"units":757}],["双步梯(bed access台阶)",{"count":1,"rev":152478.61,"units":700}],["双步梯(前面+中间+bed access)",{"count":1,"rev":1195.96,"units":4}]];
   c14.setOption({tooltip:{trigger:'axis'},legend:{data:['Rev占比%','Units占比%','ASP'],top:5},grid:{left:60,right:60,bottom:100,top:50},
     xAxis:{type:'category',data:qd1Data.map(function(d){return d[0]}),axisLabel:{rotate:30,fontSize:10}},
     yAxis:[{type:'value',name:'占比(%)',splitLine:{lineStyle:{color:'#f0f0f0'}}},
@@ -634,15 +684,30 @@ function initCharts(){
             {name:'ASP',type:'line',yAxisIndex:1,data:matData.map(function(d){return d[1].units?Math.round(d[1].rev/d[1].units):0}),itemStyle:{color:'#ef4444'},symbol:'circle',symbolSize:10}]
   });
 
-  // QD3: Vehicle
+  // QD3: Vehicle (full 1175 products)
   var c16=echarts.init(document.getElementById('r_qd3'));
-  var vData=[["Chevy Silverado/GMC Sierra",{"count":26,"rev":9351801.420000002,"units":51057}],["Jeep Wrangler",{"count":14,"rev":3235543.44,"units":15726}],["Dodge Ram",{"count":19,"rev":3186407.6499999994,"units":19168}],["Ford F-Series",{"count":11,"rev":3140893.82,"units":20295}],["Chevy Colorado/GMC Canyon",{"count":7,"rev":1066630.74,"units":5523}],["Jeep Gladiator",{"count":3,"rev":877008.8799999999,"units":4340}],["Toyota Tacoma",{"count":11,"rev":754027.9500000001,"units":3658}],["Other",{"count":5,"rev":625211.56,"units":7869}]];
+  var vData=[["Silverado/Sierra",{"count":253,"rev":17232084.499999993,"units":93419}],["Ram 1500",{"count":244,"rev":10363639.490000008,"units":57916}],["Wrangler",{"count":89,"rev":6169969.190000003,"units":27329}],["F-150",{"count":124,"rev":4895585.060000001,"units":30248}],["Tacoma",{"count":115,"rev":4691284.390000001,"units":21840}],["Colorado/Canyon",{"count":52,"rev":2393301.600000001,"units":12220}],["Gladiator",{"count":27,"rev":1908853.44,"units":8165}],["Tundra",{"count":70,"rev":1556433.4399999988,"units":7131}],["Other",{"count":82,"rev":1356537.9799999993,"units":12440}],["Bronco",{"count":16,"rev":776858.96,"units":3204}]];
   c16.setOption({tooltip:{trigger:'axis'},legend:{data:['销售额','ASP'],top:5},grid:{left:60,right:60,bottom:80,top:50},
     xAxis:{type:'category',data:vData.map(function(d){return d[0]}),axisLabel:{rotate:30,fontSize:10}},
     yAxis:[{type:'value',name:'销售额($)',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
            {type:'value',name:'ASP($)',splitLine:{show:false}}],
     series:[{name:'销售额',type:'bar',data:vData.map(function(d){return d[1].rev}),itemStyle:{color:'#3b82f6'}},
             {name:'ASP',type:'line',yAxisIndex:1,data:vData.map(function(d){return d[1].units?Math.round(d[1].rev/d[1].units):0}),itemStyle:{color:'#ef4444'},symbol:'circle',symbolSize:10}]
+  });
+
+  // Cross chart: Form x Vehicle stacked bar
+  var cCross=echarts.init(document.getElementById('r_cross'));
+  var crossVehicles=["Silverado/Sierra","Ram 1500","Wrangler","F-150","Tacoma","Colorado/Canyon","Gladiator","Tundra","Bronco"];
+  var crossColors=['#94a3b8','#3b82f6','#f59e0b','#8b5cf6','#22c55e'];
+  var crossForms=['平面梯','双步梯-经典款(中间台阶)','单步梯','侧梯','双步梯bed access系列'];
+  var crossSeries=crossForms.map(function(f,i){
+    return{name:f,type:'bar',stack:'total',data:[{"vehicle":"Silverado/Sierra","total":17232084.5,"平面梯":10360272.059999999,"平面梯_pct":60.121989652499664,"双步梯-经典款(中间台阶)":3463154.030000001,"双步梯-经典款(中间台阶)_pct":20.09712771545428,"单步梯":1946954.449999999,"单步梯_pct":11.298426780578978,"侧梯":1214366.3800000004,"侧梯_pct":7.047124101556027,"双步梯bed access系列":246520.08,"双步梯bed access系列_pct":1.430587692394382},{"vehicle":"Ram 1500","total":10363639.489999998,"平面梯":5639782.14,"平面梯_pct":54.418934057305776,"双步梯-经典款(中间台阶)":1625812.5099999998,"双步梯-经典款(中间台阶)_pct":15.687659837731388,"单步梯":1620254.9199999985,"单步梯_pct":15.634033985487456,"侧梯":1249176.8099999998,"侧梯_pct":12.053456811242283,"双步梯bed access系列":227935.91000000003,"双步梯bed access系列_pct":2.199380924239387},{"vehicle":"Wrangler","total":6169969.1899999995,"平面梯":924222.0699999998,"平面梯_pct":14.979362806186069,"双步梯-经典款(中间台阶)":4683823.41,"双步梯-经典款(中间台阶)_pct":75.91323823125931,"单步梯":546672.6299999994,"单步梯_pct":8.860216528893226,"侧梯":15251.08,"侧梯_pct":0.24718243366139078,"双步梯bed access系列":0,"双步梯bed access系列_pct":0},{"vehicle":"F-150","total":4895585.060000001,"平面梯":3556326.5900000017,"平面梯_pct":72.64354610151541,"双步梯-经典款(中间台阶)":444672.08999999997,"双步梯-经典款(中间台阶)_pct":9.083124581640908,"单步梯":519156.38999999984,"单步梯_pct":10.604583183363168,"侧梯":67743.66,"侧梯_pct":1.3837704619516913,"双步梯bed access系列":0,"双步梯bed access系列_pct":0},{"vehicle":"Tacoma","total":4691284.390000001,"平面梯":498683.92999999993,"平面梯_pct":10.630008512444924,"双步梯-经典款(中间台阶)":1066609.1300000001,"双步梯-经典款(中间台阶)_pct":22.735972525426025,"单步梯":2852237.790000001,"单步梯_pct":60.79865454500831,"侧梯":244570.50000000003,"侧梯_pct":5.213295116393487,"双步梯bed access系列":29183.039999999997,"双步梯bed access系列_pct":0.6220693007272576},{"vehicle":"Colorado/Canyon","total":2393301.5999999996,"平面梯":503569.2199999999,"平面梯_pct":21.04077563813938,"双步梯-经典款(中间台阶)":219614.82,"双步梯-经典款(中间台阶)_pct":9.176228353334158,"单步梯":940522.99,"单步梯_pct":39.29813902267897,"侧梯":460316.29999999993,"侧梯_pct":19.233526606090933,"双步梯bed access系列":269278.27,"双步梯bed access系列_pct":11.25133037975657},{"vehicle":"Gladiator","total":1908853.44,"平面梯":209,"平面梯_pct":0.010948980975721216,"双步梯-经典款(中间台阶)":146289.81,"双步梯-经典款(中间台阶)_pct":7.6637528546979485,"单步梯":823687.3199999998,"单步梯_pct":43.150893763745415,"侧梯":29763.72,"侧梯_pct":1.559245952376522,"双步梯bed access系列":908903.5899999999,"双步梯bed access系列_pct":47.615158448204376},{"vehicle":"Tundra","total":1556433.4399999997,"平面梯":678953.08,"平面梯_pct":43.62236524550642,"双步梯-经典款(中间台阶)":456733.13999999996,"双步梯-经典款(中间台阶)_pct":29.34485524803425,"单步梯":410416.56999999995,"单步梯_pct":26.36904087591436,"侧梯":1574.96,"侧梯_pct":0.10119032137988505,"双步梯bed access系列":8755.69,"双步梯bed access系列_pct":0.5625483091650872},{"vehicle":"Bronco","total":776858.96,"平面梯":91148.49000000002,"平面梯_pct":11.732952143591165,"双步梯-经典款(中间台阶)":561533.86,"双步梯-经典款(中间台阶)_pct":72.28260069240882,"单步梯":110537.52,"单步梯_pct":14.228775838538313,"侧梯":13459.2,"侧梯_pct":1.7325152560511112,"双步梯bed access系列":0,"双步梯bed access系列_pct":0}].map(function(r){return Math.round(r[f]||0)}),itemStyle:{color:crossColors[i]}};
+  });
+  cCross.setOption({tooltip:{trigger:'axis',formatter:function(ps){var s=ps[0].axisValue+'<br/>';var total=0;ps.forEach(function(p){total+=p.value});ps.forEach(function(p){if(p.value>0)s+=p.marker+p.seriesName+': $'+(p.value/1e6).toFixed(2)+'M ('+(p.value/total*100).toFixed(1)+'%)<br/>'});return s}},
+    legend:{data:crossForms,top:5,textStyle:{fontSize:10}},grid:{left:60,right:20,bottom:80,top:50},
+    xAxis:{type:'category',data:crossVehicles,axisLabel:{rotate:30,fontSize:10}},
+    yAxis:{type:'value',name:'销售额($)',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
+    series:crossSeries
   });
 
   // Bubble chart - entry opportunity
@@ -652,12 +717,13 @@ function initCharts(){
     grid:{left:60,right:40,bottom:40,top:30},
     xAxis:{type:'value',name:'市场规模 ($M)',axisLabel:{formatter:function(v){return(v/1e6).toFixed(1)+'M'}},splitLine:{lineStyle:{color:'#f0f0f0'}}},
     yAxis:{type:'value',name:'ASP ($)',min:100,splitLine:{lineStyle:{color:'#f0f0f0'}}},
-    series:[{type:'scatter',symbolSize:function(d){return Math.max(15,60-d[2]/2)},data:[
-      [10454520.22,160,51,'平面梯'],
-      [4291899.73,260,24,'双步梯-经典款(中间台阶)'],
-      [4464221.529999999,195,16,'单步梯'],
-      [365240.26,265,3,'双步梯(bed access系列)']
-    ],label:{show:true,formatter:function(p){return p.data[3]},position:'right',fontSize:11},itemStyle:{color:function(p){var c=['#94a3b8','#22c55e','#f59e0b','#3b82f6'];return c[p.dataIndex]}}}]
+    series:[{type:'scatter',symbolSize:function(d){return Math.max(15,60-d[2]/8)},data:[
+      [23202331.680000003,172,499,'平面梯'],
+      [12750625.509999998,262,90,'双步梯-经典款'],
+      [10173643.700000033,203,402,'单步梯'],
+      [3330014.740000003,185,90,'侧梯'],
+      [1691136.56,296,27,'双步梯(bed access系列)']
+    ],label:{show:true,formatter:function(p){return p.data[3]},position:'right',fontSize:11},itemStyle:{color:function(p){var c=['#94a3b8','#22c55e','#f59e0b','#8b5cf6','#3b82f6'];return c[p.dataIndex]}}}]
   });
 }
 window.addEventListener('load',function(){setTimeout(initCharts,200)});
